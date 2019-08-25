@@ -1,1 +1,2 @@
-# photo2letters
+# photo2letters - mobile app
+### Created with react-native
