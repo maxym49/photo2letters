@@ -4,12 +4,13 @@ import {Text, ImageBackground} from 'react-native';
 import {
     START_PAGE_LOGO_HEADER,
     START_PAGE_LOGO_SUBHEADER
-} from '../../../constant-text/texts';
+} from '../../../../src/common/constant-text/texts';
+import {waves} from "../../../common/path-extracter/pathExtracter";
 
 const Header = (props) => {
         return (
             <>
-                <ImageBackground  source={require( '../../../images/waves.png')} style={styleSheet.backgroundContainer}>
+                <ImageBackground source={waves} style={styleSheet.backgroundContainer}>
                 <Text style={styleSheet.header}>
                     {START_PAGE_LOGO_HEADER}
                 </Text>

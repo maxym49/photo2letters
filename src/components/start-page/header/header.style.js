@@ -1,15 +1,16 @@
 import {StyleSheet} from 'react-native';
+import {WHITE} from "../../../../src/common/styles-variables/colors";
 
 const styles = StyleSheet.create({
     header: {
-        color: '#fff',
+        color: WHITE,
         fontWeight: '600',
         fontSize: 26,
         margin: 0,
         fontFamily: "Roboto-Bold"
     },
     subHeader: {
-        color: '#fff',
+        color: WHITE,
         fontWeight: '300',
         fontSize: 14,
         marginTop: -6,

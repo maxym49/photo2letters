@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {GREY} from "../../../../src/common/styles-variables/colors";
 
 const styles = StyleSheet.create({
     bubbled: {
@@ -9,7 +10,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    avatar: {
+    frontImage: {
+        alignSelf: 'center',
         width: 128,
         height: 173,
     },
@@ -24,7 +26,7 @@ const styles = StyleSheet.create({
         fontWeight: '700'
     },
     text: {
-        color: '#8B8B8B',
+        color: GREY,
         fontSize: 14
     }
 });
