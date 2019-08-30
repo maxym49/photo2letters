@@ -16,10 +16,11 @@ export default class HomeScreen extends React.Component {
     }
 
     render() {
-        const {index} = this.props;
+        const {index, navigate} = this.props;
         return (
             <>
                 <StartPage
+                    navigate={navigate}
                     index={index}
                     centerImage={avatar}
                     textHeader={START_PAGE_EASY_TUTORIAL_HEADER}

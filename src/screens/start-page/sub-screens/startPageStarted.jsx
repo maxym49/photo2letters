@@ -13,12 +13,12 @@ export default class StartPageStarted extends React.Component {
         this.state = {};
     }
 
-
     render() {
-        const {index} = this.props;
+        const {index, navigate} = this.props;
         return (
             <>
                 <StartPage
+                    navigate={navigate}
                     index={index}
                     centerImage={clouds}
                     textHeader={START_PAGE_STARTED_TUTORIAL_HEADER}
