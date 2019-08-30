@@ -12,10 +12,12 @@ export default class Button extends Component {
 
     animateIn() {
         const {animatePress} = this.state;
+        const {action} = this.props;
         Animated.timing(animatePress, {
             toValue: 0.8,
             duration: 500
         }).start();
+        action();
     };
 
     animateOut() {
@@ -28,7 +30,7 @@ export default class Button extends Component {
 
     render() {
         const {animatePress} = this.state;
-        const {text, btnStyle, disabled, shadow, textStyle, action} = this.props;
+        const {text, btnStyle, disabled, shadow, textStyle} = this.props;
         return (
             <>
                 <TouchableWithoutFeedback onPressIn={() => this.animateIn()} onPressOut={() => this.animateOut()}

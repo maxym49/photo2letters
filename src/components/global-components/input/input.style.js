@@ -1,17 +1,19 @@
 import {StyleSheet} from 'react-native';
+import {GREY, WHITE} from "../../../common/styles-variables/colors";
 
 const styles = StyleSheet.create({
-    button: {
-        width: 256,
-        height: 42,
+    input: {
+        width: '80%',
+        height: 48,
         alignSelf: 'center',
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 36,
-        marginTop: 10
-    },
-    buttonWithShadow: {
+        borderRadius: 8,
+        marginTop: 5,
+        marginBottom: 5,
+        backgroundColor: WHITE,
+        color: GREY,
+        paddingLeft: 20,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -19,11 +21,7 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
-        elevation: 5,
-    },
-    buttonText: {
-        color: "#fff",
-        fontSize: 16
+        elevation: 1,
     }
 });
 
