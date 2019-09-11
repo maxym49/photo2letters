@@ -6,6 +6,8 @@ const emailIcon = require('../../images/emailIcon.png');
 const filesIcon = require('../../images/filesIcon.png');
 const importIcon = require('../../images/importIcon.png');
 const timerIcon = require('../../images/timerIcon.png');
+const mainWaves = require('../../images/mainWaves.png');
+const check = require('../icons/material_check.png');
 
 
 export {
@@ -16,5 +18,7 @@ export {
     emailIcon,
     filesIcon,
     importIcon,
-    timerIcon
+    timerIcon,
+    mainWaves,
+    check
 }

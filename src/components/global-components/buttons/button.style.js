@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {BLACKSHADOW, WHITE} from "../../../common/styles-variables/colors";
 
 const styles = StyleSheet.create({
     button: {
@@ -12,17 +13,17 @@ const styles = StyleSheet.create({
         marginTop: 20
     },
     buttonWithShadow: {
-        shadowColor: "#000",
+        shadowColor: BLACKSHADOW,
         shadowOffset: {
             width: 0,
             height: 2,
         },
-        shadowOpacity: 0.25,
+        shadowOpacity: 0.15,
         shadowRadius: 3.84,
-        elevation: 5,
+        elevation: 1,
     },
     buttonText: {
-        color: "#fff",
+        color: WHITE,
         fontSize: 16
     }
 });
