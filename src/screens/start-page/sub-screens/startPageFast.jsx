@@ -16,10 +16,11 @@ export default class StartPageFast extends React.Component {
 
 
     render() {
-        const {index} = this.props;
+        const {index, navigate} = this.props;
         return (
             <>
                 <StartPage
+                    navigate={navigate}
                     index={index}
                     centerImage={timerIcon}
                     textHeader={START_PAGE_FAST_TUTORIAL_HEADER}

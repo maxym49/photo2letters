@@ -9,6 +9,8 @@ export default class StartPage extends Component {
         super(props);
     }
 
+
+
     render() {
         const {
             centerImage,
@@ -16,7 +18,8 @@ export default class StartPage extends Component {
             textContentFirstLine,
             textContentSecondLine,
             textContentThirdLine,
-            index
+            index,
+            navigate
         } = this.props;
         return (
             <>
@@ -24,14 +27,15 @@ export default class StartPage extends Component {
                     backgroundColor: WHITE_GREY,
                     flex: 1
                 }}>
-                    <Header/>
+                    <Header navigate={navigate}/>
                     <Content
+                        navigate={navigate}
                         index={index}
                         centerImage={centerImage}
-                    textHeader={textHeader}
-                    textContentFirstLine={textContentFirstLine}
-                    textContentSecondLine={textContentSecondLine}
-                    textContentThirdLine={textContentThirdLine}
+                        textHeader={textHeader}
+                        textContentFirstLine={textContentFirstLine}
+                        textContentSecondLine={textContentSecondLine}
+                        textContentThirdLine={textContentThirdLine}
                     />
                 </View>
             </>
