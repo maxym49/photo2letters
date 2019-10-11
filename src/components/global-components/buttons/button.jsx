@@ -41,7 +41,7 @@ export default class Button extends Component {
                                 scale: animatePress
                             }]
                         },
-                        shadow ? buttonStyles.buttonWithShadow : null]}
+                        shadow ? buttonStyles.buttonWithShadow : null, disabled ? buttonStyles.buttonDisabled : null]}
                     >
                         <Text style={[buttonStyles.buttonText, textStyle]}>
                             {text}

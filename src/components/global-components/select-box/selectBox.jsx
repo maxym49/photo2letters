@@ -12,6 +12,17 @@ export default class SelectBox extends Component {
         }
     }
 
+    componentDidMount() {
+        const {itemList} = this.props;
+        const checkedItems = itemList.map(item => {
+            if (item && item.checked)
+                return item
+        });
+        this.setState({
+            listLength: checkedItems.length
+        })
+    }
+
     onSwitch = () => {
         const {isOpened} = this.state;
         this.setState({
@@ -22,24 +33,42 @@ export default class SelectBox extends Component {
     render() {
         const {isOpened} = this.state;
         const {itemList, text, action} = this.props;
+        const checkedItems = [];
+        if (itemList)
+            itemList.forEach(item => {
+                if (item && item.checked)
+                    checkedItems.push(item);
+            });
         return (
             <>
-                <View style={selectBoxStyle.selectBox}>
+                <View
+                    onStartShouldSetResponder={evt => {
+                        evt.persist();
+                            console.log(evt.target);
+                        }
+                    }
+                    style={selectBoxStyle.selectBox}>
                     <TouchableWithoutFeedback onPress={this.onSwitch}>
                         <View style={selectBoxStyle.selectBoxInput}>
-                            <Text style={{color: GREY}}>{text}</Text>
+                            <Text
+                                style={{color: GREY}}>{checkedItems.length ? `Selected items: ${checkedItems.length}` : text}</Text>
                         </View>
                     </TouchableWithoutFeedback>
                     {isOpened ? (
                         <ScrollView nestedScrollEnabled={true}>
                             {itemList ? itemList.map((item, index) => (
                                 <View key={item.value} style={{flexDirection: 'column'}}>
-                                    <View style={{width: '100%', height: 1, backgroundColor: LIGHTLINE}}/>
-                                    <View style={[selectBoxStyle.selectBoxItem, itemList.length - 1 === index ? {borderRadius:8} : null]}>
-                                        <Text style={{color: GREY}}>{item.label}</Text>
-                                        <Checkbox checked={item.checked} action={() => action(item)}
-                                                  styles={{alignContent: 'flex-end'}}/>
-                                    </View>
+                                    <TouchableWithoutFeedback onPress={() => action(item)}>
+                                       <View>
+                                           <View style={{width: '100%', height: 1, backgroundColor: LIGHTLINE}}/>
+                                           <View
+                                               style={[selectBoxStyle.selectBoxItem, itemList.length - 1 === index ? {borderRadius: 8} : null]}>
+                                               <Text style={{color: GREY}}>{item.label}</Text>
+                                               <Checkbox checked={item.checked} action={() => action(item)}
+                                                         styles={{alignContent: 'flex-end'}}/>
+                                           </View>
+                                       </View>
+                                    </TouchableWithoutFeedback>
                                 </View>
                             )) : null}
                         </ScrollView>

@@ -10,30 +10,25 @@ import Input from "../../../components/global-components/input/input";
 import {
     MAIN_EMAILS_PAGE_SELECT_LABEL, MAIN_EMAILS_PAGE_SELECT_PLACEHOLDER,
     MAIN_EMAILS_PAGE_SEND_ON_LABEL,
-    MAIN_EMAILS_PAGE_SEND_ON_PLACEHOLDER
+    MAIN_EMAILS_PAGE_SEND_ON_PLACEHOLDER, MAIN_EMAILS_PAGE_BUTTON_SEND, MAIN_EMAILS_PAGE_SELECT_NO_FILES
 } from "../../../common/constant-text/texts";
-import {BLACK} from "../../../common/styles-variables/colors";
+import {BLACK, PRIMARY} from "../../../common/styles-variables/colors";
 import SelectBox from "../../../components/global-components/select-box/selectBox";
+import {getToken} from "../../../common/auth/token";
+import {
+    DEV_INFORMATION_EMAIL_URL,
+    DEV_INFORMATION_SAVED_FILES_URL,
+    DEV_EMAIL_SENDER_URL
+} from "../../../common/env/env";
+import Button from "../../../components/global-components/buttons/button";
 
 export default class EmailsPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            sendToEmail: "",
             cardModules,
-            itemList: [{
-                label: 'item1',
-                value: 'item1',
-                checked: true,
-            }, {
-                label: 'item2',
-                value: 'item2',
-                checked: false,
-            }, {
-                label: 'item3',
-                value: 'item3',
-                checked: false,
-            },
-            ]
+            fileList: []
         };
     }
 
@@ -45,7 +40,9 @@ export default class EmailsPage extends Component {
         });
         this.setState({
             cardModules: filteredCardModules
-        })
+        });
+        this.initEmailData();
+        this.initFilesData();
     }
 
     onCardPress = (name) => {
@@ -53,19 +50,114 @@ export default class EmailsPage extends Component {
     };
 
     onSelect = (selectedItem) => {
-        const {itemList} = this.state;
-        const filteredItemList = itemList.map(item => {
+        const {fileList} = this.state;
+        const filteredFileList = fileList.map(item => {
             if (item.value === selectedItem.value)
                 item.checked = !item.checked;
             return item;
         });
         this.setState({
-            itemList: filteredItemList
+            fileList: filteredFileList
         });
     };
 
+    initEmailData = () => {
+        fetch(DEV_INFORMATION_EMAIL_URL, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: getToken()
+            }
+        })
+            .then((response) => {
+                if (response.ok)
+                    return (response.json())
+            })
+            .then((responseJson) => {
+                if (responseJson) {
+                    const [email] = responseJson.email;
+                    if (email)
+                        this.setState({
+                            sendToEmail: email.value
+                        })
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+    initFilesData = () => {
+        fetch(DEV_INFORMATION_SAVED_FILES_URL, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: getToken()
+            }
+        })
+            .then((response) => {
+                if (response.ok)
+                    return (response.json())
+            })
+            .then((responseJson) => {
+                if (responseJson) {
+                    const fileList = [];
+                    responseJson.files.forEach(file => {
+                        fileList.push({
+                            label: file.name,
+                            value: file._id,
+                            checked: false
+                        })
+                    });
+                    this.setState({
+                        fileList
+                    })
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+    sendPackage = () => {
+        const {sendToEmail, fileList} = this.state;
+        const selectedFiles = fileList.map(file => {
+            if (file.checked)
+                return file.value
+        });
+        console.log(selectedFiles);
+        fetch(DEV_EMAIL_SENDER_URL, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: getToken()
+            },
+            body: JSON.stringify({
+                emailObj: {
+                    value: sendToEmail,
+                    selectedFiles
+                }
+            }),
+        })
+            .then(() => {
+                console.log("Files should be already sent")
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+    onEmailChange = (t) => {
+        this.setState({
+            sendToEmail: t
+        })
+    };
+
     render() {
-        const {cardModules, itemList} = this.state;
+        const {cardModules, fileList, sendToEmail} = this.state;
         return (
             <>
                 <BackgroundContainer resizeMode="contain">
@@ -105,6 +197,7 @@ export default class EmailsPage extends Component {
                                         color: BLACK,
                                     }}>{MAIN_EMAILS_PAGE_SEND_ON_LABEL}</Text>
                                     <Input placeholder={MAIN_EMAILS_PAGE_SEND_ON_PLACEHOLDER}
+                                           text={sendToEmail} action={this.onEmailChange}
                                            styles={{alignSelf: 'flex-start', width: '100%'}}
                                            textContentType="emailAddress"
                                            autoCompleteType="email"
@@ -119,9 +212,16 @@ export default class EmailsPage extends Component {
                                     <Text style={{
                                         color: BLACK,
                                     }}>{MAIN_EMAILS_PAGE_SELECT_LABEL}</Text>
-                                <SelectBox action={this.onSelect.bind(this)} itemList={itemList}
-                                           text={MAIN_EMAILS_PAGE_SELECT_PLACEHOLDER}/>
+                                    <SelectBox action={this.onSelect.bind(this)} itemList={fileList}
+                                               text={fileList.length ? MAIN_EMAILS_PAGE_SELECT_PLACEHOLDER : MAIN_EMAILS_PAGE_SELECT_NO_FILES}/>
                                 </View>
+                                <Button
+                                    action={this.sendPackage} shadow
+                                    text={MAIN_EMAILS_PAGE_BUTTON_SEND}
+                                    btnStyle={{
+                                        backgroundColor: PRIMARY,
+                                        marginTop: 30
+                                    }}/>
                             </View>
                         </ContentWrapper>
                     </ScrollView>
