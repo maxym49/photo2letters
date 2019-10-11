@@ -3,7 +3,7 @@ const DEV_LOGIN_URL = `${DEV_API_URL}/login`;
 const DEV_REGISTER_URL = `${DEV_API_URL}/register`;
 const DEV_LOGOUT_URL = `${DEV_API_URL}/logout`;
 const DEV_FILES_URL = `${DEV_API_URL}/photoFiles`;
-const DEV_FILE_URL = `${DEV_API_URL}/photoFiles/`;
+const DEV_FILE_URL_SPECIFIC = `${DEV_API_URL}/photoFiles/specific`;
 const DEV_EMAIL_SENDER_URL = `${DEV_API_URL}/email`;
 const DEV_INFORMATION_PASSWORD_URL = `${DEV_API_URL}/information/user/password`;
 const DEV_INFORMATION_EMAIL_URL = `${DEV_API_URL}/information/user/email`;
@@ -15,7 +15,7 @@ export {
     DEV_REGISTER_URL,
     DEV_LOGOUT_URL,
     DEV_FILES_URL,
-    DEV_FILE_URL,
+    DEV_FILE_URL_SPECIFIC,
     DEV_EMAIL_SENDER_URL,
     DEV_INFORMATION_PASSWORD_URL,
     DEV_INFORMATION_EMAIL_URL,

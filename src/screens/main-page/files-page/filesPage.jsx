@@ -6,16 +6,24 @@ import ContentWrapper from "../../../components/global-components/content-wrappe
 import cardModules from "../../../common/static-data/main/cardModules";
 import onModuleCardPress from "../common/commonFunctions";
 import ListWithDots from "../../../components/global-components/list-with-dots/listWithDots";
-import {MAIN_FILES_PAGE_REMOVE_BUTTON, MAIN_FILES_PAGE_SAVED_FILES} from "../../../common/constant-text/texts";
+import {
+    MAIN_FILES_PAGE_REMOVE_BUTTON,
+    MAIN_FILES_PAGE_SAVED_FILES,
+    MAIN_EMAILS_PAGE_SELECT_NO_FILES
+} from "../../../common/constant-text/texts";
 import {BLACK, PRIMARY, WHITE_GREY} from "../../../common/styles-variables/colors";
 import Button from "../../../components/global-components/buttons/button";
 import Header from "../../../components/start-page/header/header";
+import {DEV_INFORMATION_SAVED_FILES_URL, DEV_FILE_URL_SPECIFIC} from "../../../common/env/env";
+import {getToken} from "../../../common/auth/token";
+import {convertTimestampToDate} from "../../../common/converter/time";
 
 export default class FilesPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            cardModules
+            cardModules,
+            fileList: []
         };
     }
 
@@ -28,6 +36,7 @@ export default class FilesPage extends Component {
         this.setState({
             cardModules: filteredCardModules
         })
+        this.initFilesData();
     }
 
     onCardPress = (name) => {
@@ -35,11 +44,79 @@ export default class FilesPage extends Component {
     };
 
     onRemove = () => {
-        console.log('Items have been removed');
+        const {fileList} = this.state;
+        const filesToRemove = [];
+        const filteredList = [];
+        fileList.forEach(file => {
+            !file.isSelected ?
+                filteredList.push(file) :
+                filesToRemove.push(file);
+        });
+        fetch(DEV_FILE_URL_SPECIFIC, {
+            method: 'DELETE',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: getToken()
+            },
+            body: JSON.stringify({
+                filesToRemove
+            })
+        })
+            .then((response) => {
+                if (response.ok) {
+                    this.setState({
+                        fileList: filteredList
+                    })
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+    initFilesData = () => {
+        fetch(DEV_INFORMATION_SAVED_FILES_URL, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: getToken()
+            }
+        })
+            .then((response) => {
+                if (response.ok)
+                    return (response.json())
+            })
+            .then((responseJson) => {
+                if (responseJson) {
+                    const fileList = [];
+                    responseJson.files.forEach(file => {
+                        fileList.push({
+                            title: file.name,
+                            value: file._id,
+                            isSelected: false,
+                            date: convertTimestampToDate(file.createdAt)
+                        })
+                    });
+                    this.setState({
+                        fileList
+                    })
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+    setFilesToRemove = (fileList) => {
+        this.setState({
+            fileList
+        })
     };
 
     render() {
-        const {cardModules} = this.state;
+        const {cardModules, fileList} = this.state;
         return (
             <>
                 <BackgroundContainer resizeMode="contain">
@@ -69,14 +146,14 @@ export default class FilesPage extends Component {
                                 fontSize: 18,
                                 alignSelf: 'flex-start',
                                 marginTop: 50
-                            }}>{MAIN_FILES_PAGE_SAVED_FILES}</Text>
-                            <ListWithDots/>
-                            <Button action={this.onRemove.bind(this)} text={MAIN_FILES_PAGE_REMOVE_BUTTON} btnStyle={{
-                                backgroundColor: WHITE_GREY, borderColor: PRIMARY, borderWidth: 2
-                            }} textStyle={{
-                                color: BLACK
-                            }}/>
-                            <Button text={MAIN_FILES_PAGE_REMOVE_BUTTON}/>
+                            }}>{fileList.length ? MAIN_FILES_PAGE_SAVED_FILES : MAIN_EMAILS_PAGE_SELECT_NO_FILES}</Text>
+                            <ListWithDots itemsList={fileList} setItemsToRemove={this.setFilesToRemove}/>
+                            {fileList.length ? (
+                                <Button action={this.onRemove} text={MAIN_FILES_PAGE_REMOVE_BUTTON} btnStyle={{
+                                    backgroundColor: WHITE_GREY, borderColor: PRIMARY, borderWidth: 2
+                                }} textStyle={{
+                                    color: BLACK
+                                }}/>) : null}
                         </ContentWrapper>
                     </ScrollView>
                 </BackgroundContainer>

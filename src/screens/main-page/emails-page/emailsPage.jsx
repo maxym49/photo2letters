@@ -127,7 +127,6 @@ export default class EmailsPage extends Component {
             if (file.checked)
                 return file.value
         });
-        console.log(selectedFiles);
         fetch(DEV_EMAIL_SENDER_URL, {
             method: 'POST',
             headers: {
@@ -216,6 +215,7 @@ export default class EmailsPage extends Component {
                                                text={fileList.length ? MAIN_EMAILS_PAGE_SELECT_PLACEHOLDER : MAIN_EMAILS_PAGE_SELECT_NO_FILES}/>
                                 </View>
                                 <Button
+                                    disabled={!sendToEmail.length}
                                     action={this.sendPackage} shadow
                                     text={MAIN_EMAILS_PAGE_BUTTON_SEND}
                                     btnStyle={{

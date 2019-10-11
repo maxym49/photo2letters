@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableWithoutFeedback} from 'react-native';
+import {View, Text, TouchableWithoutFeedback, TouchableOpacity} from 'react-native';
 import Header from "../../../components/start-page/header/header";
 import CardModule from "../../../components/main/card-module/cardModule";
 import Button from "../../../components/global-components/buttons/button";
