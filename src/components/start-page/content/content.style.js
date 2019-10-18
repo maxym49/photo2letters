@@ -1,34 +1,33 @@
 import {StyleSheet} from 'react-native';
-import {GREY} from "../../../../src/common/styles-variables/colors";
+import {GREY} from '../../../../src/common/styles-variables/colors';
 
 const styles = StyleSheet.create({
-    bubbled: {
-        width: 334,
-        height: 257,
-        alignSelf: 'center',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    frontImage: {
-        alignSelf: 'center',
-        width: 128,
-        height: 173,
-    },
-    contentContainer: {
-        padding: 20,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    header: {
-        fontSize: 20,
-        marginBottom: 6,
-        fontWeight: '700'
-    },
-    text: {
-        color: GREY,
-        fontSize: 14
-    }
+  bubbled: {
+    width: 334,
+    height: 257,
+    alignSelf: 'center',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  frontImage: {
+    alignSelf: 'center',
+    width: 128,
+    height: 173,
+  },
+  contentContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  header: {
+    fontSize: 20,
+    marginBottom: 6,
+    fontWeight: '700',
+  },
+  text: {
+    color: GREY,
+    fontSize: 14,
+  },
 });
 
 export default styles;
