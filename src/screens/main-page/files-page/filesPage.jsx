@@ -135,7 +135,6 @@ export default class FilesPage extends Component {
             style={{
               flexGrow: 1,
             }}>
-            <Header disabled={true} />
             <ContentWrapper>
               <View
                 style={{
@@ -162,6 +161,7 @@ export default class FilesPage extends Component {
                 style={{
                   color: PRIMARY,
                   fontSize: 18,
+                  fontFamily: 'Roboto-Regular',
                   alignSelf: 'flex-start',
                   marginTop: 50,
                 }}>

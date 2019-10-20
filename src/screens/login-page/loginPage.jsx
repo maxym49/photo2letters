@@ -11,6 +11,8 @@ import {
   PASSWORD_INPUT_PLACEHOLDER,
   START_PAGE_LOGIN_TO_ACCOUNT_BUTTON_TEXT,
   LOGIN_PAGE_FORGOT_PASSWORD,
+  EMAIL_VALIDATION_ERROR_MESSAGE,
+  PASSWORD_VALIDATION_ERROR_MESSAGE,
 } from '../../common/constant-text/texts';
 import Button from '../../components/global-components/buttons/button';
 import {PRIMARY, WHITE_GREY} from '../../common/styles-variables/colors';
@@ -51,6 +53,12 @@ export default class LoginPage extends Component {
     })
       .then(response => {
         if (response.ok) return response.json();
+        else {
+          this.setState({
+            email: '',
+            password: '',
+          });
+        }
       })
       .then(responseJson => {
         if (responseJson) {
@@ -75,7 +83,10 @@ export default class LoginPage extends Component {
     });
   };
 
-  onForgotPasswordPress() {}
+  onForgotPasswordPress = () => {
+    const ra = navigateTo('ForgotPassword');
+    this.props.navigation.dispatch(ra);
+  };
 
   render() {
     const {navigation} = this.props;
@@ -91,12 +102,16 @@ export default class LoginPage extends Component {
             />
             <Input
               text={email}
+              errorMessage={EMAIL_VALIDATION_ERROR_MESSAGE}
+              type="email"
               action={this.onEmailChange}
               placeholder={EMAIL_INPUT_PLACEHOLDER}
             />
             <Input
               security
               text={password}
+              errorMessage={PASSWORD_VALIDATION_ERROR_MESSAGE}
+              type="password"
               action={this.onPassChange}
               placeholder={PASSWORD_INPUT_PLACEHOLDER}
             />

@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
 import Input from '../../components/global-components/input/input';
-import {MAIN_EMAILS_PAGE_SEND_ON_LABEL} from '../../common/constant-text/texts';
+import {
+  MAIN_EMAILS_PAGE_SEND_ON_LABEL,
+  EMAIL_VALIDATION_ERROR_MESSAGE,
+} from '../../common/constant-text/texts';
 import styles from './styles';
 import {getToken} from '../../common/auth/token';
 import {DEV_FILES_URL} from '../../common/env/env';
@@ -41,6 +44,8 @@ export default class SendEmail extends Component {
   saveFile = () => {
     const {fileName, image} = this.props.navigation.state.params;
     const {email} = this.state;
+    console.log(image);
+    console.log(fileName);
     fetch(DEV_FILES_URL, {
       method: 'POST',
       headers: {
@@ -67,9 +72,18 @@ export default class SendEmail extends Component {
       });
   };
 
-  sendToEmail = () => {
-    this.saveFile();
-    this.navigateToFiles();
+  sendToEmail = isValid => {
+    this.setState(
+      {
+        isValid,
+      },
+      () => {
+        if (this.state.isValid) {
+          this.saveFile();
+          this.navigateToFiles();
+        }
+      },
+    );
   };
 
   renderForm() {
@@ -103,11 +117,13 @@ export default class SendEmail extends Component {
         <View style={styles.wrapper}>
           <Input
             text={email}
+            type="email"
+            isValueValid={this.sendToEmail}
             action={this.onEmailChange}
             placeholder={MAIN_EMAILS_PAGE_SEND_ON_LABEL}
-            onBlurAction={this.sendToEmail}
             textContentType="emailAddress"
             autoCompleteType="email"
+            errorMessage={EMAIL_VALIDATION_ERROR_MESSAGE}
             keyboardType="email-address"
           />
         </View>

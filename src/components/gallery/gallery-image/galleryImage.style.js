@@ -30,5 +30,6 @@ export default StyleSheet.create({
   tick: {
     color: WHITE,
     fontSize: 30,
+    fontFamily: 'Roboto-Regular',
   },
 });

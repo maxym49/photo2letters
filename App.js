@@ -10,6 +10,7 @@ import CameraPage from './src/screens/camera/cameraPage';
 import FileName from './src/screens/save-file/fileName';
 import SendEmail from './src/screens/save-file/sendEmail';
 import GalleryPage from './src/screens/gallery/galleryPage';
+import ForgotPasswordPage from './src/screens/forgot-password/forgotPassword';
 
 const MainNavigator = createStackNavigator(
   {
@@ -23,6 +24,7 @@ const MainNavigator = createStackNavigator(
     FileName: {screen: FileName},
     SendEmail: {screen: SendEmail},
     Gallery: {screen: GalleryPage},
+    ForgotPassword: {screen: ForgotPasswordPage},
   },
   {
     headerMode: 'none',

@@ -175,7 +175,6 @@ export default class EmailsPage extends Component {
             style={{
               flexGrow: 1,
             }}>
-            <Header disabled={true} />
             <ContentWrapper
               style={{
                 flex: 1,
@@ -226,6 +225,7 @@ export default class EmailsPage extends Component {
                     textContentType="emailAddress"
                     autoCompleteType="email"
                     keyboardType="email-address"
+                    type="email"
                   />
                 </View>
                 <View

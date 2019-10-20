@@ -1,6 +1,6 @@
 import React from 'react';
 import StartPage from '../../../components/start-page/startPage';
-import {avatar} from '../../../common/path-extracter/pathExtracter';
+import {easy} from '../../../common/path-extracter/pathExtracter';
 import {
   START_PAGE_EASY_TUTORIAL_CONTENT_FIRST_LINE,
   START_PAGE_EASY_TUTORIAL_CONTENT_SECOND_LINE,
@@ -21,7 +21,7 @@ export default class HomeScreen extends React.Component {
         <StartPage
           navigation={navigation}
           index={index}
-          centerImage={avatar}
+          centerImage={easy}
           textHeader={START_PAGE_EASY_TUTORIAL_HEADER}
           textContentFirstLine={START_PAGE_EASY_TUTORIAL_CONTENT_FIRST_LINE}
           textContentSecondLine={START_PAGE_EASY_TUTORIAL_CONTENT_SECOND_LINE}

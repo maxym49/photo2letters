@@ -1,4 +1,4 @@
-const avatar = require('../../images/avatar.png');
+const easy = require('../../images/easy.png');
 const bubble = require('../../images/bubble.png');
 const waves = require('../../images/waves.png');
 const clouds = require('../../images/clouds.png');
@@ -8,17 +8,18 @@ const importIcon = require('../../images/importIcon.png');
 const timerIcon = require('../../images/timerIcon.png');
 const mainWaves = require('../../images/mainWaves.png');
 const check = require('../icons/material_check.png');
-
+const forgotPassword = require('../../images/forgotPassword.png');
 
 export {
-    avatar,
-    bubble,
-    waves,
-    clouds,
-    emailIcon,
-    filesIcon,
-    importIcon,
-    timerIcon,
-    mainWaves,
-    check
-}
+  easy,
+  bubble,
+  waves,
+  clouds,
+  emailIcon,
+  filesIcon,
+  importIcon,
+  timerIcon,
+  mainWaves,
+  check,
+  forgotPassword,
+};

@@ -43,16 +43,16 @@ export default StyleSheet.create({
   lightText: {
     fontSize: 17,
     color: GREY,
-    fontWeight: '300',
+    fontFamily: 'Roboto-Regular',
   },
   boldText: {
-    fontWeight: '600',
     fontSize: 17,
     color: GREY,
+    fontFamily: 'Roboto-Medium',
   },
   bolTextPrimary: {
-    fontWeight: '600',
     fontSize: 17,
     color: PRIMARY,
+    fontFamily: 'Roboto-Medium',
   },
 });

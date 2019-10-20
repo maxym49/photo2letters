@@ -53,6 +53,16 @@ const MAIN_EMAILS_PAGE_SELECT_PLACEHOLDER = 'Select document';
 const MAIN_EMAILS_PAGE_SELECT_NO_FILES = 'You have 0 saved files';
 const MAIN_EMAILS_PAGE_BUTTON_SEND = 'Send files';
 
+/* FORGOT PASSWORD */
+const FORGOT_PASSWORD_PAGE_FORGOT_PASSWORD = 'Forgot password?';
+const FORGOT_PASSWORD_PAGE_EMAIL_TEXT =
+  'Enter your email address to reset your password.';
+const FORGOT_PASSWORD_PAGE_AUTH_TEXT =
+  'After submit you should receive an email with the authentication key.';
+const FORGOT_PASSWORD_CODE_VERIFICATION =
+  'Please enter the verification code which\nwe have sent to your email address';
+const FORGOT_PASSWORD_CODE_RESET = 'Please enter the new password';
+
 /* SAVE FILE */
 
 const SAVE_FILE_PAGE_FILE_NAME = 'Provide file name';
@@ -61,10 +71,17 @@ const SAVE_FILE_PAGE_FILE_NAME = 'Provide file name';
 const EMAIL_INPUT_PLACEHOLDER = 'email';
 const PASSWORD_INPUT_PLACEHOLDER = 'password';
 const RE_TYPE_PASSWORD_INPUT_PLACEHOLDER = 're-type password';
-const LOGO_HEADER = 'Photo to Letters';
+const LOGO_HEADER = 'Photo2Letters';
 const LOGO_SUB_HEADER = 'makes life simple';
 const START_PAGE_CREATE_ACCOUNT_BUTTON_TEXT = 'Create account';
 const START_PAGE_LOGIN_TO_ACCOUNT_BUTTON_TEXT = 'Login to Account';
+
+/* VALIDATION */
+const EMAIL_VALIDATION_ERROR_MESSAGE = 'The email is incorrect.';
+const FILE_NAME_VALIDATION_ERROR_MESSAGE =
+  'The file name should contain 4 letters.';
+const PASSWORD_VALIDATION_ERROR_MESSAGE =
+  'The password should contain one special character and large letter.';
 
 export {
   LOGO_HEADER,
@@ -106,4 +123,12 @@ export {
   MAIN_EMAILS_PAGE_BUTTON_SEND,
   MAIN_EMAILS_PAGE_SELECT_NO_FILES,
   SAVE_FILE_PAGE_FILE_NAME,
+  EMAIL_VALIDATION_ERROR_MESSAGE,
+  FILE_NAME_VALIDATION_ERROR_MESSAGE,
+  PASSWORD_VALIDATION_ERROR_MESSAGE,
+  FORGOT_PASSWORD_PAGE_FORGOT_PASSWORD,
+  FORGOT_PASSWORD_PAGE_EMAIL_TEXT,
+  FORGOT_PASSWORD_PAGE_AUTH_TEXT,
+  FORGOT_PASSWORD_CODE_VERIFICATION,
+  FORGOT_PASSWORD_CODE_RESET,
 };

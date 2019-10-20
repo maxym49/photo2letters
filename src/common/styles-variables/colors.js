@@ -4,12 +4,14 @@ const GREY = '#8B8B8B';
 const DARKGREY = '#5E5E5E';
 const PRIMARY = '#7966FF';
 const SECONDARY = '#F1EEFC';
+const THIRD = '#3F3C7C';
 const BLACK = '#000000';
 const LIGHTPRIMARY = 'rgba(121, 102, 255, 0.47)';
 const BLACKSHADOW = 'rgba(0, 0, 0, 0.12)';
 const LIGHTLINE = 'rgba(0, 0, 0, 0.01)';
 const LIGHTLINEWHITE = 'rgba(255, 255, 255, 0.25)';
 const LIGHTGREY = '#B1B1B1';
+const REDERROR = '#cc0000';
 
 export {
   WHITE,
@@ -24,4 +26,6 @@ export {
   LIGHTLINE,
   LIGHTLINEWHITE,
   LIGHTGREY,
+  REDERROR,
+  THIRD,
 };

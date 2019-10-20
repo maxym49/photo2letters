@@ -18,7 +18,7 @@ export default StyleSheet.create({
   buttonText: {
     fontSize: 14,
     color: BLACK,
-    fontWeight: '300',
+    fontFamily: 'Roboto-Regular',
   },
   masonry: {
     flexDirection: 'row',

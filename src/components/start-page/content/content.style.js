@@ -22,11 +22,12 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 20,
     marginBottom: 6,
-    fontWeight: '700',
+    fontFamily: 'Roboto-Medium',
   },
   text: {
     color: GREY,
     fontSize: 14,
+    fontFamily: 'Roboto-Regular',
   },
 });
 

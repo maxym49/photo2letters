@@ -1,17 +1,31 @@
 import React, {Component} from 'react';
-import {TextInput} from 'react-native';
+import {TextInput, View, Text} from 'react-native';
 import inputStyles from './input.style';
+import {isInputValid} from '../../../common/validators/validators';
 
 export default class Input extends Component {
   constructor(props) {
     super(props);
     this.state = {
       textValue: '',
+      isValid: true,
     };
   }
 
+  validate = () => {
+    const {onBlurAction, type, text, isValueValid} = this.props;
+    const isValid = isInputValid(text, type);
+    this.setState({
+      isValid,
+    });
+    if (isValueValid) {
+      isValid ? isValueValid(true) : isValueValid(false);
+    }
+    if (onBlurAction) onBlurAction();
+  };
+
   render() {
-    const {textValue} = this.state;
+    const {textValue, isValid} = this.state;
     const {
       action,
       text,
@@ -21,7 +35,8 @@ export default class Input extends Component {
       autoCompleteType,
       keyboardType,
       security,
-      onBlurAction,
+      errorStyle,
+      errorMessage,
     } = this.props;
     return (
       <>
@@ -34,7 +49,14 @@ export default class Input extends Component {
           keyboardType={keyboardType}
           placeholder={placeholder}
           secureTextEntry={security}
-          onBlur={onBlurAction ? () => onBlurAction() : null}></TextInput>
+          onBlur={this.validate}></TextInput>
+        <View style={[inputStyles.errorWrapper, errorStyle]}>
+          {!isValid ? (
+            <Text style={inputStyles.errorMessage}>
+              {errorMessage ? errorMessage : 'error'}
+            </Text>
+          ) : null}
+        </View>
       </>
     );
   }

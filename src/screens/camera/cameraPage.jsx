@@ -56,7 +56,7 @@ export default class CameraPage extends Component {
             bottom: 20,
             backgroundColor: 'transparent',
             color: WHITE,
-            fontWeight: '600',
+            fontFamily: 'Roboto-Medium',
             fontSize: 17,
           }}
           onPress={() => this.setState({imageUri: null})}>
@@ -69,8 +69,8 @@ export default class CameraPage extends Component {
             bottom: 20,
             backgroundColor: 'transparent',
             color: WHITE,
-            fontWeight: '600',
             fontSize: 17,
+            fontFamily: 'Roboto-Medium',
           }}
           onPress={() => this.savePicture()}>
           Accept

@@ -65,7 +65,6 @@ export default class ImportPage extends Component {
     return (
       <>
         <BackgroundContainer resizeMode="contain">
-          <Header disabled={true} />
           <ContentWrapper>
             <View
               style={{
@@ -102,7 +101,7 @@ export default class ImportPage extends Component {
             <Text
               style={{
                 fontSize: 16,
-                fontWeight: '300',
+                fontFamily: 'Roboto-Regular',
                 color: GREY,
               }}>
               {MAIN_IMPORT_PAGE_BETWEEN_BUTTONS}
