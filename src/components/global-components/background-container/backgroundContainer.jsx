@@ -1,13 +1,13 @@
 import React from 'react';
 import {View} from 'react-native';
-import {WHITE_GREY} from '../../../common/styles-variables/colors';
+import {WHITE} from '../../../common/styles-variables/colors';
 
 const BackgroundContainer = ({children}) => {
   return (
     <>
       <View
         style={{
-          backgroundColor: WHITE_GREY,
+          backgroundColor: WHITE,
           flex: 1,
         }}>
         {children}

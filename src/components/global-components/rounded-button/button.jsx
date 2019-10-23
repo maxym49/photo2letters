@@ -8,10 +8,10 @@ export default ({action}) => {
       <TouchableOpacity onPress={action}>
         <View
           style={{
-            width: 42,
-            height: 42,
+            width: 52,
+            height: 52,
             alignSelf: 'center',
-            borderRadius: 42 / 2,
+            borderRadius: 52 / 2,
             borderWidth: 2,
             borderColor: LIGHTGREY,
           }}></View>

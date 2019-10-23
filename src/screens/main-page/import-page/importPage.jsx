@@ -7,7 +7,6 @@ import {
 } from 'react-native';
 import Header from '../../../components/start-page/header/header';
 import CardModule from '../../../components/main/card-module/cardModule';
-import Button from '../../../components/global-components/buttons/button';
 import {
   MAIN_IMPORT_PAGE_BETWEEN_BUTTONS,
   MAIN_IMPORT_PAGE_MAKE_PHOTO_BUTTON,
@@ -15,12 +14,12 @@ import {
 } from '../../../common/constant-text/texts';
 import {GREY, PRIMARY, WHITE} from '../../../common/styles-variables/colors';
 import BackgroundContainer from '../../../components/global-components/background-container/backgroundContainer';
-import ContentWrapper from '../../../components/global-components/content-wrapper/contentWrapper';
 import cardModules from '../../../common/static-data/main/cardModules';
 import {
   onModuleCardPress,
   navigateTo,
 } from '../../../common/router/commonFunctions';
+import {ButtonWithBorder} from '../../../components/global-components/buttons/buttonWithBorder/button';
 
 export default class ImportPage extends Component {
   constructor(props) {
@@ -42,13 +41,11 @@ export default class ImportPage extends Component {
   }
 
   onMakePhotoPress() {
-    const ra = navigateTo('Camera');
-    this.props.navigation.dispatch(ra);
+    this.props.navigation.navigate('Camera');
   }
 
   onUploadPress() {
-    const ra = navigateTo('Gallery');
-    this.props.navigation.dispatch(ra);
+    this.props.navigation.navigate('Gallery');
   }
 
   onCardPress = name => {
@@ -65,7 +62,14 @@ export default class ImportPage extends Component {
     return (
       <>
         <BackgroundContainer resizeMode="contain">
-          <ContentWrapper>
+          <Header />
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'flex-start',
+              padding: 50,
+              position: 'relative',
+            }}>
             <View
               style={{
                 justifyContent: 'center',
@@ -87,16 +91,9 @@ export default class ImportPage extends Component {
                 </TouchableWithoutFeedback>
               ))}
             </View>
-            <Button
+            <ButtonWithBorder
               action={this.onMakePhotoPress.bind(this)}
-              shadow
               text={MAIN_IMPORT_PAGE_MAKE_PHOTO_BUTTON}
-              btnStyle={{
-                backgroundColor: WHITE,
-                marginTop: 60,
-                marginBottom: 10,
-              }}
-              textStyle={{color: PRIMARY}}
             />
             <Text
               style={{
@@ -106,15 +103,11 @@ export default class ImportPage extends Component {
               }}>
               {MAIN_IMPORT_PAGE_BETWEEN_BUTTONS}
             </Text>
-            <Button
+            <ButtonWithBorder
               action={this.onUploadPress.bind(this)}
               text={MAIN_IMPORT_PAGE_UPLOAD_PHOTO_BUTTON}
-              btnStyle={{
-                backgroundColor: PRIMARY,
-                marginBottom: 10,
-              }}
             />
-          </ContentWrapper>
+          </View>
         </BackgroundContainer>
       </>
     );

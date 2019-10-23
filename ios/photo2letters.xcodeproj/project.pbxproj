@@ -27,6 +27,10 @@
 		79256D24A2DF4AB8A0F036F4 /* Roboto-RegularItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 08B4056820C54301B5C63197 /* Roboto-RegularItalic.ttf */; };
 		C62CAF02EB35433D8A1CF236 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02A3F9220F604328A3347149 /* Roboto-Thin.ttf */; };
 		8920DC56A8C04D268FCB5E36 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F23B3AA8367544B187C88DAC /* Roboto-ThinItalic.ttf */; };
+		E23B4CF1771847A3B3071720 /* Comfortaa-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F8EE666F7F2547A1AEA2F74F /* Comfortaa-Medium.ttf */; };
+		8C49C4C210784C81A4D4B7C8 /* Comfortaa-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 23FD2CB167BE40C0AAF188FD /* Comfortaa-Regular.ttf */; };
+		4C67B4F89C004169A2DCC64D /* DMSerifText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45A66AE94C694E3C8F52EF79 /* DMSerifText-Regular.ttf */; };
+		6E8573FD956E4491A1232F33 /* LiuJianMaoCao-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE3898EDD464492DB4A330AA /* LiuJianMaoCao-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +78,10 @@
 		08B4056820C54301B5C63197 /* Roboto-RegularItalic.ttf */ = {isa = PBXFileReference; name = "Roboto-RegularItalic.ttf"; path = "../assets/fonts/Roboto-RegularItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		02A3F9220F604328A3347149 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; name = "Roboto-Thin.ttf"; path = "../assets/fonts/Roboto-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		F23B3AA8367544B187C88DAC /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; name = "Roboto-ThinItalic.ttf"; path = "../assets/fonts/Roboto-ThinItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F8EE666F7F2547A1AEA2F74F /* Comfortaa-Medium.ttf */ = {isa = PBXFileReference; name = "Comfortaa-Medium.ttf"; path = "../assets/fonts/Comfortaa-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		23FD2CB167BE40C0AAF188FD /* Comfortaa-Regular.ttf */ = {isa = PBXFileReference; name = "Comfortaa-Regular.ttf"; path = "../assets/fonts/Comfortaa-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		45A66AE94C694E3C8F52EF79 /* DMSerifText-Regular.ttf */ = {isa = PBXFileReference; name = "DMSerifText-Regular.ttf"; path = "../assets/fonts/DMSerifText-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DE3898EDD464492DB4A330AA /* LiuJianMaoCao-Regular.ttf */ = {isa = PBXFileReference; name = "LiuJianMaoCao-Regular.ttf"; path = "../assets/fonts/LiuJianMaoCao-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +204,10 @@
 				08B4056820C54301B5C63197 /* Roboto-RegularItalic.ttf */,
 				02A3F9220F604328A3347149 /* Roboto-Thin.ttf */,
 				F23B3AA8367544B187C88DAC /* Roboto-ThinItalic.ttf */,
+				F8EE666F7F2547A1AEA2F74F /* Comfortaa-Medium.ttf */,
+				23FD2CB167BE40C0AAF188FD /* Comfortaa-Regular.ttf */,
+				45A66AE94C694E3C8F52EF79 /* DMSerifText-Regular.ttf */,
+				DE3898EDD464492DB4A330AA /* LiuJianMaoCao-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -349,6 +361,10 @@
 				79256D24A2DF4AB8A0F036F4 /* Roboto-RegularItalic.ttf in Resources */,
 				C62CAF02EB35433D8A1CF236 /* Roboto-Thin.ttf in Resources */,
 				8920DC56A8C04D268FCB5E36 /* Roboto-ThinItalic.ttf in Resources */,
+				E23B4CF1771847A3B3071720 /* Comfortaa-Medium.ttf in Resources */,
+				8C49C4C210784C81A4D4B7C8 /* Comfortaa-Regular.ttf in Resources */,
+				4C67B4F89C004169A2DCC64D /* DMSerifText-Regular.ttf in Resources */,
+				6E8573FD956E4491A1232F33 /* LiuJianMaoCao-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

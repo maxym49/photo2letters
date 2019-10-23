@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import styleSheet from './content.style';
-import {Text, ImageBackground, Image, View} from 'react-native';
+import {Text, Image, View} from 'react-native';
 import Dots from './dots/dots';
-import {bubble} from '../../../common/path-extracter/pathExtracter';
 
-const {bubbled, frontImage, contentContainer, header, text} = styleSheet;
+const {frontImage, contentContainer, header, text} = styleSheet;
 
 export default class Content extends Component {
   constructor(props) {
@@ -23,9 +22,7 @@ export default class Content extends Component {
     } = this.props;
     return (
       <>
-        <ImageBackground source={bubble} style={bubbled}>
-          <Image source={centerImage} style={frontImage} resizeMode="contain" />
-        </ImageBackground>
+        <Image source={centerImage} style={frontImage} resizeMode="contain" />
         <View style={contentContainer}>
           <Text style={header}>{textHeader}</Text>
           <Text style={text}>{textContentFirstLine}</Text>

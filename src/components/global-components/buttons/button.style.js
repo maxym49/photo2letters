@@ -1,34 +1,82 @@
 import {StyleSheet} from 'react-native';
-import {BLACKSHADOW, WHITE} from '../../../common/styles-variables/colors';
+import {
+  buttonFontColor,
+  buttonFontSize,
+  buttonFontFamily,
+  buttonLetterSpacing,
+} from '../../../common/styles-variables/typography/typography';
+import {GREY_1, WHITE, PRIMARY} from '../../../common/styles-variables/colors';
 
 const styles = StyleSheet.create({
   button: {
-    width: 256,
-    height: 42,
+    width: '100%',
+    height: 36,
     alignSelf: 'center',
     flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 36,
-    marginTop: 20,
-  },
-  buttonWithShadow: {
-    shadowColor: BLACKSHADOW,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.15,
-    shadowRadius: 3.84,
-    elevation: 1,
+    position: 'relative',
+    borderRadius: 2,
+    marginTop: 5,
+    marginBottom: 5,
   },
   buttonText: {
-    color: WHITE,
-    fontSize: 16,
-    fontFamily: 'Roboto-Regular',
+    color: buttonFontColor,
+    fontSize: buttonFontSize,
+    fontFamily: buttonFontFamily,
+    letterSpacing: buttonLetterSpacing,
   },
   buttonDisabled: {
-    backgroundColor: '#B5B5B5',
+    backgroundColor: GREY_1,
+  },
+  borderButtonDisabled: {
+    backgroundColor: WHITE,
+  },
+  borderLeftWrapper: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: 2,
+    height: 36,
+    transform: [{rotate: '180deg'}],
+  },
+  borderLeft: {
+    width: 2,
+    backgroundColor: PRIMARY,
+  },
+  borderRight: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    width: 2,
+    backgroundColor: PRIMARY,
+  },
+  borderTop: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    backgroundColor: PRIMARY,
+    height: 2,
+  },
+  borderBottomWrapper: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    width: '100%',
+    height: 2,
+    transform: [{rotate: '180deg'}],
+  },
+  borderBottom: {
+    backgroundColor: PRIMARY,
+    height: 2,
+  },
+  textWrapper: {
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: '100%',
   },
 });
 

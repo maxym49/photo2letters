@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {View} from 'react-native';
 import Content from './content/content';
 
 export default class StartPage extends Component {
@@ -18,15 +19,20 @@ export default class StartPage extends Component {
     } = this.props;
     return (
       <>
-        <Content
-          navigation={navigation}
-          index={index}
-          centerImage={centerImage}
-          textHeader={textHeader}
-          textContentFirstLine={textContentFirstLine}
-          textContentSecondLine={textContentSecondLine}
-          textContentThirdLine={textContentThirdLine}
-        />
+        <View
+          style={{
+            flex: 1,
+          }}>
+          <Content
+            navigation={navigation}
+            index={index}
+            centerImage={centerImage}
+            textHeader={textHeader}
+            textContentFirstLine={textContentFirstLine}
+            textContentSecondLine={textContentSecondLine}
+            textContentThirdLine={textContentThirdLine}
+          />
+        </View>
       </>
     );
   }

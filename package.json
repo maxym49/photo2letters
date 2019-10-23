@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@react-native-community/cameraroll": "^1.2.1",
+    "@react-native-community/cli-platform-android": "^2.9.0",
     "react": "16.8.6",
     "react-native": "0.60.5",
     "react-native-camera": "^3.7.1",
@@ -33,10 +34,5 @@
   },
   "jest": {
     "preset": "react-native"
-  },
-  "rnpm": {
-    "assets": [
-      "./assets/fonts/"
-    ]
   }
 }

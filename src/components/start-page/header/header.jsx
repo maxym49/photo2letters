@@ -1,11 +1,7 @@
 import React, {Component} from 'react';
+import {TouchableOpacity, View, Image} from 'react-native';
 import styleSheet from './header.style';
-import {Text, ImageBackground, TouchableOpacity, View} from 'react-native';
-import {
-  LOGO_HEADER,
-  LOGO_SUB_HEADER,
-} from '../../../../src/common/constant-text/texts';
-import {waves} from '../../../common/path-extracter/pathExtracter';
+import {logo, hamburger} from '../../../common/path-extracter/pathExtracter';
 import {navigateTo} from '../../../common/router/commonFunctions';
 
 class Header extends Component {
@@ -23,14 +19,10 @@ class Header extends Component {
     const {disabled} = this.props;
     return (
       <>
-        <ImageBackground source={waves} style={styleSheet.backgroundContainer}>
-          <TouchableOpacity disabled={disabled} onPress={this.redirectToHome}>
-            <View>
-              <Text style={styleSheet.header}>{LOGO_HEADER}</Text>
-              <Text style={styleSheet.subHeader}>{LOGO_SUB_HEADER}</Text>
-            </View>
-          </TouchableOpacity>
-        </ImageBackground>
+        <View style={styleSheet.container}>
+          <Image source={logo} resizeMode="contain" />
+          {disabled ? null : <Image source={hamburger} resizeMode="contain" />}
+        </View>
       </>
     );
   }

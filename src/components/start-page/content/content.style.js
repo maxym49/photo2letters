@@ -1,33 +1,32 @@
 import {StyleSheet} from 'react-native';
-import {GREY} from '../../../../src/common/styles-variables/colors';
+import {
+  headerFontSize,
+  headerFontFamily,
+  headerFontColor,
+  textFontColor,
+  textFontSize,
+  textFontFamily,
+} from '../../../common/styles-variables/typography/typography';
 
 const styles = StyleSheet.create({
-  bubbled: {
-    width: 334,
-    height: 257,
-    alignSelf: 'center',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   frontImage: {
     alignSelf: 'center',
-    width: 128,
-    height: 173,
+    marginBottom: 40,
   },
   contentContainer: {
     alignItems: 'center',
     justifyContent: 'center',
   },
   header: {
-    fontSize: 20,
-    marginBottom: 6,
-    fontFamily: 'Roboto-Medium',
+    fontSize: headerFontSize,
+    marginBottom: 2,
+    color: headerFontColor,
+    fontFamily: headerFontFamily,
   },
   text: {
-    color: GREY,
-    fontSize: 14,
-    fontFamily: 'Roboto-Regular',
+    color: textFontColor,
+    fontSize: textFontSize,
+    fontFamily: textFontFamily,
   },
 });
 

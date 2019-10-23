@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
+import {View, Text} from 'react-native';
 import Header from '../../components/start-page/header/header';
-import LoginHeader from '../../components/login-register-page/header/header';
 import BackgroundContainer from '../../components/global-components/background-container/backgroundContainer';
-import ContentWrapper from '../../components/global-components/content-wrapper/contentWrapper';
 import Input from '../../components/global-components/input/input';
 import {
   EMAIL_INPUT_PLACEHOLDER,
@@ -11,12 +10,22 @@ import {
   PASSWORD_INPUT_PLACEHOLDER,
   START_PAGE_CREATE_ACCOUNT_BUTTON_TEXT,
   RE_TYPE_PASSWORD_INPUT_PLACEHOLDER,
+  PASSWORD_VALIDATION_ERROR_MESSAGE,
+  EMAIL_VALIDATION_ERROR_MESSAGE,
 } from '../../common/constant-text/texts';
-import Button from '../../components/global-components/buttons/button';
 import {PRIMARY} from '../../common/styles-variables/colors';
-import {DEV_REGISTER_URL} from '../../common/env/env';
+import {REGISTER_URL} from '../../common/env/env';
 import {setToken} from '../../common/auth/token';
 import {navigateTo} from '../../common/router/commonFunctions';
+import {ButtonWithOutBorder} from '../../components/global-components/buttons/buttonWithOutBorder/button';
+import {
+  textFontFamily,
+  textFontSize,
+  textFontColor,
+  headerFontColor,
+  headerFontSize,
+  headerFontFamily,
+} from '../../common/styles-variables/typography/typography';
 
 export default class RegisterPage extends Component {
   constructor(props) {
@@ -26,6 +35,7 @@ export default class RegisterPage extends Component {
       password: '',
       rePassword: '',
       formNotValid: true,
+      isEmailValid: false,
     };
   }
 
@@ -36,7 +46,7 @@ export default class RegisterPage extends Component {
 
   onRegisterPress() {
     const {email, password} = this.state;
-    fetch(DEV_REGISTER_URL, {
+    fetch(REGISTER_URL, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -86,9 +96,9 @@ export default class RegisterPage extends Component {
   };
 
   validForm = () => {
-    const {password, rePassword, email} = this.state;
+    const {password, rePassword, email, isEmailValid} = this.state;
     const canCheck = email.length && password.length && rePassword.length;
-    if (canCheck) {
+    if (canCheck && isEmailValid) {
       const {password, rePassword} = this.state;
       this.setState({
         formNotValid: password !== rePassword,
@@ -96,49 +106,85 @@ export default class RegisterPage extends Component {
     }
   };
 
+  isEmailValid = isEmailValid => this.setState({isEmailValid});
+
   render() {
-    const {navigation} = this.props;
     const {email, password, rePassword, formNotValid} = this.state;
     return (
       <>
         <BackgroundContainer>
-          <Header navigation={navigation} />
-          <ContentWrapper
+          <Header disabled />
+          <View
             style={{
-              marginTop: 40,
+              flex: 1,
+              justifyContent: 'flex-start',
+              position: 'relative',
+              padding: 50,
             }}>
-            <LoginHeader
-              headerText={REGISTER_PAGE_HEADER}
-              subHeaderText={REGISTER_PAGE_SUB_HEADER}
-            />
+            <View
+              style={{
+                alignItems: 'flex-start',
+                width: '100%',
+                marginBottom: 50,
+              }}>
+              <Text
+                style={{
+                  fontFamily: headerFontFamily,
+                  fontSize: headerFontSize,
+                  color: headerFontColor,
+                }}>
+                {REGISTER_PAGE_HEADER}
+              </Text>
+              <Text
+                style={{
+                  fontFamily: textFontFamily,
+                  fontSize: textFontSize,
+                  color: textFontColor,
+                }}>
+                {REGISTER_PAGE_SUB_HEADER}
+              </Text>
+            </View>
             <Input
+              errorMessage={EMAIL_VALIDATION_ERROR_MESSAGE}
+              isValid={this.isEmailValid}
+              type="email"
               text={email}
               action={this.onEmailChange}
               placeholder={EMAIL_INPUT_PLACEHOLDER}
             />
             <Input
+              errorMessage={PASSWORD_VALIDATION_ERROR_MESSAGE}
+              type="password"
               text={password}
               action={this.onPasswordChange}
               security
               placeholder={PASSWORD_INPUT_PLACEHOLDER}
             />
             <Input
+              errorMessage={PASSWORD_VALIDATION_ERROR_MESSAGE}
+              type="password"
               text={rePassword}
               action={this.onRePasswordChange}
               security
               placeholder={RE_TYPE_PASSWORD_INPUT_PLACEHOLDER}
             />
-            <Button
-              disabled={formNotValid}
-              action={this.onRegisterPress.bind(this)}
-              shadow
-              text={START_PAGE_CREATE_ACCOUNT_BUTTON_TEXT}
-              btnStyle={{
-                backgroundColor: PRIMARY,
-                marginTop: 30,
-              }}
-            />
-          </ContentWrapper>
+            <View
+              style={{
+                width: '100%',
+                position: 'absolute',
+                bottom: 50,
+                left: 50,
+              }}>
+              <ButtonWithOutBorder
+                disabled={formNotValid}
+                action={this.onRegisterPress.bind(this)}
+                text={START_PAGE_CREATE_ACCOUNT_BUTTON_TEXT}
+                btnStyle={{
+                  marginTop: 30,
+                }}
+              />
+            </View>
+          </View>
         </BackgroundContainer>
       </>
     );

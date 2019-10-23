@@ -1,34 +1,34 @@
 import {StyleSheet} from 'react-native';
-import {GREY, WHITE, REDERROR} from '../../../common/styles-variables/colors';
+import {WHITE, REDERROR, GREY_7} from '../../../common/styles-variables/colors';
+import {
+  buttonFontFamily,
+  buttonFontSize,
+  buttonFontColor,
+  buttonLetterSpacing,
+} from '../../../common/styles-variables/typography/typography';
 
 const styles = StyleSheet.create({
   input: {
-    width: '80%',
-    height: 48,
+    width: '100%',
+    height: 36,
     alignSelf: 'center',
     flexDirection: 'column',
     justifyContent: 'center',
-    borderRadius: 8,
+    letterSpacing: buttonLetterSpacing,
     marginTop: 5,
     marginBottom: 5,
-    backgroundColor: WHITE,
-    color: GREY,
-    paddingLeft: 20,
-    shadowColor: '#000',
-    fontFamily: 'Roboto-Regular',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 1,
+    borderBottomWidth: 2,
+    borderBottomColor: GREY_7,
+    color: buttonFontColor,
+    paddingLeft: 10,
+    fontSize: buttonFontSize,
+    fontFamily: buttonFontFamily,
   },
   errorWrapper: {
     justifyContent: 'flex-end',
     alignContent: 'flex-end',
     borderRadius: 8,
-    width: '80%',
+    width: '100%',
     paddingBottom: 5,
     paddingRight: 2,
   },

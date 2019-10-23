@@ -27,11 +27,8 @@ target 'photo2letters' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
 
-  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 
-  pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
   target 'photo2lettersTests' do
     inherit! :search_paths

@@ -1,15 +1,23 @@
 import React, {Component} from 'react';
-import {View, Image, Text, Dimensions} from 'react-native';
+import {View, Image, Text, Dimensions, TouchableOpacity} from 'react-native';
 import {RNCamera} from 'react-native-camera';
 import cStyles from './camera.style';
 import RoundedButton from '../../components/global-components/rounded-button/button';
 import {WHITE, BLACK} from '../../common/styles-variables/colors';
+import {
+  flashOn,
+  flashOff,
+  focusOn,
+  focusOff,
+} from '../../common/path-extracter/pathExtracter';
 
 export default class CameraPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       imageUri: null,
+      isFlashOn: false,
+      isFocusOn: true,
     };
   }
 
@@ -28,6 +36,18 @@ export default class CameraPage extends Component {
     const {image} = this.state;
     const {navigate} = this.props.navigation;
     navigate('FileName', {image});
+  };
+
+  changeFlash = () => {
+    this.setState({
+      isFlashOn: !this.state.isFlashOn,
+    });
+  };
+
+  changeFocus = () => {
+    this.setState({
+      isFocusOn: !this.state.isFocusOn,
+    });
   };
 
   renderImage() {
@@ -80,14 +100,25 @@ export default class CameraPage extends Component {
   }
 
   renderCamera() {
+    const {isFlashOn, isFocusOn} = this.state;
     return (
       <>
         <RNCamera
           ref={ref => {
             this.camera = ref;
           }}
+          defaultOnFocusComponent={true}
           type={RNCamera.Constants.Type.back}
-          flashMode={RNCamera.Constants.FlashMode.on}
+          autoFocus={
+            isFocusOn
+              ? RNCamera.Constants.AutoFocus.on
+              : RNCamera.Constants.AutoFocus.ff
+          }
+          flashMode={
+            isFlashOn
+              ? RNCamera.Constants.FlashMode.on
+              : RNCamera.Constants.FlashMode.off
+          }
           androidCameraPermissionOptions={{
             title: 'Permission to use camera',
             message: 'We need your permission to use your camera',
@@ -107,7 +138,41 @@ export default class CameraPage extends Component {
         />
         <View style={{flex: 0, flexDirection: 'row', justifyContent: 'center'}}>
           <View style={cStyles.capture}>
+            <View style={cStyles.iconWrapper}>
+              <TouchableOpacity onPress={this.changeFlash}>
+                {isFlashOn ? (
+                  <Image
+                    source={flashOn}
+                    resizeMode="contain"
+                    style={cStyles.icon}
+                  />
+                ) : (
+                  <Image
+                    source={flashOff}
+                    resizeMode="contain"
+                    style={cStyles.icon}
+                  />
+                )}
+              </TouchableOpacity>
+            </View>
             <RoundedButton action={this.takePicture.bind(this)}></RoundedButton>
+            <View style={cStyles.iconWrapper}>
+              <TouchableOpacity onPress={this.changeFocus}>
+                {isFocusOn ? (
+                  <Image
+                    source={focusOn}
+                    resizeMode="contain"
+                    style={cStyles.icon}
+                  />
+                ) : (
+                  <Image
+                    source={focusOff}
+                    resizeMode="contain"
+                    style={cStyles.icon}
+                  />
+                )}
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </>

@@ -7,7 +7,7 @@ import {
 } from '../../common/constant-text/texts';
 import styles from './styles';
 import {getToken} from '../../common/auth/token';
-import {DEV_FILES_URL} from '../../common/env/env';
+import {FILES_URL} from '../../common/env/env';
 import {navigateTo} from '../../common/router/commonFunctions';
 
 export default class SendEmail extends Component {
@@ -46,7 +46,7 @@ export default class SendEmail extends Component {
     const {email} = this.state;
     console.log(image);
     console.log(fileName);
-    fetch(DEV_FILES_URL, {
+    fetch(FILES_URL, {
       method: 'POST',
       headers: {
         Accept: 'application/json',

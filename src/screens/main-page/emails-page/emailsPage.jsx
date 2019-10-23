@@ -3,7 +3,6 @@ import {View, TouchableWithoutFeedback, ScrollView, Text} from 'react-native';
 import Header from '../../../components/start-page/header/header';
 import CardModule from '../../../components/main/card-module/cardModule';
 import BackgroundContainer from '../../../components/global-components/background-container/backgroundContainer';
-import ContentWrapper from '../../../components/global-components/content-wrapper/contentWrapper';
 import cardModules from '../../../common/static-data/main/cardModules';
 import {onModuleCardPress} from '../../../common/router/commonFunctions';
 import Input from '../../../components/global-components/input/input';
@@ -15,15 +14,15 @@ import {
   MAIN_EMAILS_PAGE_BUTTON_SEND,
   MAIN_EMAILS_PAGE_SELECT_NO_FILES,
 } from '../../../common/constant-text/texts';
-import {BLACK, PRIMARY} from '../../../common/styles-variables/colors';
+import {BLACK} from '../../../common/styles-variables/colors';
 import SelectBox from '../../../components/global-components/select-box/selectBox';
 import {getToken} from '../../../common/auth/token';
 import {
-  DEV_INFORMATION_EMAIL_URL,
-  DEV_INFORMATION_SAVED_FILES_URL,
-  DEV_EMAIL_SENDER_URL,
+  INFORMATION_EMAIL_URL,
+  INFORMATION_SAVED_FILES_URL,
+  EMAIL_SENDER_URL,
 } from '../../../common/env/env';
-import Button from '../../../components/global-components/buttons/button';
+import {ButtonWithBorder} from '../../../components/global-components/buttons/buttonWithBorder/button';
 
 export default class EmailsPage extends Component {
   constructor(props) {
@@ -69,7 +68,7 @@ export default class EmailsPage extends Component {
   };
 
   initEmailData = () => {
-    fetch(DEV_INFORMATION_EMAIL_URL, {
+    fetch(INFORMATION_EMAIL_URL, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -105,7 +104,7 @@ export default class EmailsPage extends Component {
   };
 
   initFilesData = () => {
-    fetch(DEV_INFORMATION_SAVED_FILES_URL, {
+    fetch(INFORMATION_SAVED_FILES_URL, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -140,7 +139,7 @@ export default class EmailsPage extends Component {
   sendPackage = () => {
     const {sendToEmail, fileList} = this.state;
     const selectedFiles = fileList.filter(file => file.checked);
-    fetch(DEV_EMAIL_SENDER_URL, {
+    fetch(EMAIL_SENDER_URL, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -170,14 +169,18 @@ export default class EmailsPage extends Component {
     return (
       <>
         <BackgroundContainer resizeMode="contain">
+          <Header disabled={true} />
           <ScrollView
             nestedScrollEnabled={true}
             style={{
               flexGrow: 1,
             }}>
-            <ContentWrapper
+            <View
               style={{
                 flex: 1,
+                justifyContent: 'flex-start',
+                padding: 50,
+                position: 'relative',
               }}>
               <View
                 style={{
@@ -250,18 +253,13 @@ export default class EmailsPage extends Component {
                     }
                   />
                 </View>
-                <Button
+                <ButtonWithBorder
                   disabled={!sendToEmail.length && !selectedFiles.length}
                   action={this.sendPackage}
-                  shadow
                   text={MAIN_EMAILS_PAGE_BUTTON_SEND}
-                  btnStyle={{
-                    backgroundColor: PRIMARY,
-                    marginTop: 30,
-                  }}
                 />
               </View>
-            </ContentWrapper>
+            </View>
           </ScrollView>
         </BackgroundContainer>
       </>

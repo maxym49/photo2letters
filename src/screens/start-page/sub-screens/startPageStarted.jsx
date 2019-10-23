@@ -6,7 +6,7 @@ import {
   START_PAGE_STARTED_TUTORIAL_CONTENT_THIRD_LINE,
   START_PAGE_STARTED_TUTORIAL_HEADER,
 } from '../../../common/constant-text/texts';
-import {clouds} from '../../../common/path-extracter/pathExtracter';
+import {settingsPhone} from '../../../common/path-extracter/pathExtracter';
 
 export default class StartPageStarted extends React.Component {
   constructor(props) {
@@ -21,7 +21,7 @@ export default class StartPageStarted extends React.Component {
         <StartPage
           navigation={navigation}
           index={index}
-          centerImage={clouds}
+          centerImage={settingsPhone}
           textHeader={START_PAGE_STARTED_TUTORIAL_HEADER}
           textContentFirstLine={START_PAGE_STARTED_TUTORIAL_CONTENT_FIRST_LINE}
           textContentSecondLine={

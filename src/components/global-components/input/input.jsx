@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {TextInput, View, Text} from 'react-native';
 import inputStyles from './input.style';
 import {isInputValid} from '../../../common/validators/validators';
+import {PRIMARY} from '../../../common/styles-variables/colors';
 
 export default class Input extends Component {
   constructor(props) {
@@ -9,10 +10,12 @@ export default class Input extends Component {
     this.state = {
       textValue: '',
       isValid: true,
+      isOnFocus: false,
     };
   }
 
   validate = () => {
+    this.setFocus();
     const {onBlurAction, type, text, isValueValid} = this.props;
     const isValid = isInputValid(text, type);
     this.setState({
@@ -24,8 +27,14 @@ export default class Input extends Component {
     if (onBlurAction) onBlurAction();
   };
 
+  setFocus = () => {
+    this.setState({
+      isOnFocus: !this.state.isOnFocus,
+    });
+  };
+
   render() {
-    const {textValue, isValid} = this.state;
+    const {textValue, isValid, isOnFocus} = this.state;
     const {
       action,
       text,
@@ -41,7 +50,12 @@ export default class Input extends Component {
     return (
       <>
         <TextInput
-          style={[inputStyles.input, styles]}
+          onFocus={this.setFocus}
+          style={[
+            inputStyles.input,
+            styles,
+            isOnFocus ? {borderBottomColor: PRIMARY} : null,
+          ]}
           onChangeText={action ? t => action(t) : null}
           value={text ? text : textValue}
           textContentType={textContentType}

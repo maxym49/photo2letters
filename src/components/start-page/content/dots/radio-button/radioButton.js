@@ -1,26 +1,34 @@
 import React from 'react';
 import {View} from 'react-native';
-import {PRIMARY, SECONDARY} from "../../../../../../src/common/styles-variables/colors";
+import {
+  PRIMARY,
+  GREY_2,
+} from '../../../../../../src/common/styles-variables/colors';
 
-const RadioButton = (props) => {
-    return (
-        <View style={[{
-            width: 12,
-            height: 12,
-            borderRadius: 12,
-            marginLeft: 12,
-            marginRight: 12,
-            backgroundColor: SECONDARY
-        }, props.selected ? {
-            width: 12,
-            height: 12,
-            borderRadius: 12,
-            marginLeft: 12,
-            marginRight: 12,
-            backgroundColor: PRIMARY
-        } : null]}>
-        </View>
-    );
+const RadioButton = props => {
+  return (
+    <View
+      style={[
+        {
+          width: 10,
+          height: 10,
+          borderRadius: 10,
+          marginLeft: 10,
+          marginRight: 10,
+          backgroundColor: GREY_2,
+        },
+        props.selected
+          ? {
+              width: 10,
+              height: 10,
+              borderRadius: 10,
+              marginLeft: 10,
+              marginRight: 10,
+              backgroundColor: PRIMARY,
+            }
+          : null,
+      ]}></View>
+  );
 };
 
 export default RadioButton;

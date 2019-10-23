@@ -1,8 +1,14 @@
 import React, {Component} from 'react';
-import {View, TouchableWithoutFeedback, ScrollView, Text} from 'react-native';
+import {
+  View,
+  TouchableWithoutFeedback,
+  ScrollView,
+  Text,
+  Animated,
+  Easing,
+} from 'react-native';
 import CardModule from '../../../components/main/card-module/cardModule';
 import BackgroundContainer from '../../../components/global-components/background-container/backgroundContainer';
-import ContentWrapper from '../../../components/global-components/content-wrapper/contentWrapper';
 import cardModules from '../../../common/static-data/main/cardModules';
 import {onModuleCardPress} from '../../../common/router/commonFunctions';
 import ListWithDots from '../../../components/global-components/list-with-dots/listWithDots';
@@ -16,14 +22,15 @@ import {
   PRIMARY,
   WHITE_GREY,
 } from '../../../common/styles-variables/colors';
-import Button from '../../../components/global-components/buttons/button';
 import Header from '../../../components/start-page/header/header';
 import {
-  DEV_INFORMATION_SAVED_FILES_URL,
-  DEV_FILE_URL_SPECIFIC,
+  INFORMATION_SAVED_FILES_URL,
+  FILE_URL_SPECIFIC,
 } from '../../../common/env/env';
 import {getToken} from '../../../common/auth/token';
 import {convertTimestampToDate} from '../../../common/converter/time';
+import Loading from '../../../components/global-components/loading/loading';
+import {ButtonWithOutBorder} from '../../../components/global-components/buttons/buttonWithOutBorder/button';
 
 export default class FilesPage extends Component {
   constructor(props) {
@@ -31,7 +38,9 @@ export default class FilesPage extends Component {
     this.state = {
       cardModules,
       fileList: [],
+      contentLoaded: false,
     };
+    this.opacityValue = new Animated.Value(1);
   }
 
   componentDidMount() {
@@ -62,7 +71,7 @@ export default class FilesPage extends Component {
     fileList.forEach(file => {
       !file.isSelected ? filteredList.push(file) : filesToRemove.push(file);
     });
-    fetch(DEV_FILE_URL_SPECIFIC, {
+    fetch(FILE_URL_SPECIFIC, {
       method: 'DELETE',
       headers: {
         Accept: 'application/json',
@@ -86,7 +95,7 @@ export default class FilesPage extends Component {
   };
 
   initFilesData = () => {
-    fetch(DEV_INFORMATION_SAVED_FILES_URL, {
+    fetch(INFORMATION_SAVED_FILES_URL, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -109,9 +118,13 @@ export default class FilesPage extends Component {
               date: convertTimestampToDate(file.createdAt),
             });
           });
-          this.setState({
-            fileList,
-          });
+          this.fadeOutLoader();
+          setTimeout(() => {
+            this.setState({
+              fileList,
+              contentLoaded: true,
+            });
+          }, 1000);
         }
       })
       .catch(error => {
@@ -125,72 +138,113 @@ export default class FilesPage extends Component {
     });
   };
 
-  render() {
-    const {cardModules, fileList} = this.state;
+  fadeOutLoader = () => {
+    Animated.timing(this.opacityValue, {
+      toValue: 0,
+      duration: 500,
+      useNativeDriver: true,
+      delay: 500,
+    }).start();
+  };
+
+  renderLoader = () => {
     return (
       <>
-        <BackgroundContainer resizeMode="contain">
-          <ScrollView
-            nestedScrollEnabled={true}
-            style={{
-              flexGrow: 1,
-            }}>
-            <ContentWrapper>
-              <View
-                style={{
-                  justifyContent: 'center',
-                  alignItems: 'space-between',
-                  flexDirection: 'row',
-                }}>
-                {cardModules.map(module => (
-                  <TouchableWithoutFeedback
-                    disabled={module.isActive}
-                    key={module.name}
-                    onPress={() => this.onCardPress(module.name)}>
-                    <View>
-                      <CardModule
-                        isActive={module.isActive}
-                        image={module.image}
-                        text={module.text}
-                      />
-                    </View>
-                  </TouchableWithoutFeedback>
-                ))}
-              </View>
-              <Text
-                style={{
-                  color: PRIMARY,
-                  fontSize: 18,
-                  fontFamily: 'Roboto-Regular',
-                  alignSelf: 'flex-start',
-                  marginTop: 50,
-                }}>
-                {fileList.length
-                  ? MAIN_FILES_PAGE_SAVED_FILES
-                  : MAIN_EMAILS_PAGE_SELECT_NO_FILES}
-              </Text>
-              <ListWithDots
-                itemsList={fileList}
-                setItemsToRemove={this.setFilesToRemove}
-              />
-              {fileList.length ? (
-                <Button
-                  action={this.onRemove}
-                  text={MAIN_FILES_PAGE_REMOVE_BUTTON}
-                  btnStyle={{
-                    backgroundColor: WHITE_GREY,
-                    borderColor: PRIMARY,
-                    borderWidth: 2,
-                  }}
-                  textStyle={{
-                    color: BLACK,
-                  }}
-                />
-              ) : null}
-            </ContentWrapper>
-          </ScrollView>
-        </BackgroundContainer>
+        <Animated.View
+          style={{
+            flex: 1,
+            opacity: this.opacityValue,
+            transform: [
+              {
+                scale: this.opacityValue.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [1, 0.9],
+                }),
+              },
+            ],
+          }}>
+          <Loading></Loading>
+        </Animated.View>
       </>
     );
+  };
+
+  renderFiles = () => {
+    const {cardModules, fileList} = this.state;
+    return (
+      <BackgroundContainer resizeMode="contain">
+        <Header disabled={true} />
+        <ScrollView
+          nestedScrollEnabled={true}
+          style={{
+            flexGrow: 1,
+          }}>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'flex-start',
+              padding: 50,
+              position: 'relative',
+            }}>
+            <View
+              style={{
+                justifyContent: 'center',
+                alignItems: 'space-between',
+                flexDirection: 'row',
+              }}>
+              {cardModules.map(module => (
+                <TouchableWithoutFeedback
+                  disabled={module.isActive}
+                  key={module.name}
+                  onPress={() => this.onCardPress(module.name)}>
+                  <View>
+                    <CardModule
+                      isActive={module.isActive}
+                      image={module.image}
+                      text={module.text}
+                    />
+                  </View>
+                </TouchableWithoutFeedback>
+              ))}
+            </View>
+            <Text
+              style={{
+                color: PRIMARY,
+                fontSize: 18,
+                fontFamily: 'Roboto-Regular',
+                alignSelf: 'flex-start',
+                marginTop: 50,
+              }}>
+              {fileList.length
+                ? MAIN_FILES_PAGE_SAVED_FILES
+                : MAIN_EMAILS_PAGE_SELECT_NO_FILES}
+            </Text>
+            <ListWithDots
+              itemsList={fileList}
+              setItemsToRemove={this.setFilesToRemove}
+            />
+            {fileList.length ? (
+              <ButtonWithOutBorder
+                action={this.onRemove}
+                text={MAIN_FILES_PAGE_REMOVE_BUTTON}
+                btnStyle={{
+                  backgroundColor: WHITE_GREY,
+                  borderColor: PRIMARY,
+                  borderWidth: 2,
+                }}
+                textStyle={{
+                  color: BLACK,
+                }}
+              />
+            ) : null}
+          </View>
+        </ScrollView>
+      </BackgroundContainer>
+    );
+  };
+
+  render() {
+    const {contentLoaded} = this.state;
+    return <>{contentLoaded ? this.renderFiles() : this.renderLoader()}</>;
   }
 }

@@ -5,9 +5,10 @@ import StartPageStarted from './sub-screens/startPageStarted';
 import Swiper from 'react-native-swiper';
 import {View} from 'react-native';
 import Header from '../../components/start-page/header/header';
-import {WHITE_GREY, PRIMARY} from '../../common/styles-variables/colors';
+import {WHITE_GREY, PRIMARY, WHITE} from '../../common/styles-variables/colors';
 import {navigateTo} from '../../common/router/commonFunctions';
-import Button from '../../components/global-components/buttons/button';
+import {ButtonWithBorder} from '../../components/global-components/buttons/buttonWithBorder/button';
+import {ButtonWithOutBorder} from '../../components/global-components/buttons/buttonWithOutBorder/button';
 import {
   START_PAGE_CREATE_ACCOUNT_BUTTON_TEXT,
   START_PAGE_LOGIN_TO_ACCOUNT_BUTTON_TEXT,
@@ -42,12 +43,14 @@ export default class StartPage extends React.Component {
     const {navigation} = this.props;
     return (
       <>
+        <Header disabled navigation={navigation} />
         <View
           style={{
-            backgroundColor: WHITE_GREY,
+            backgroundColor: WHITE,
             flex: 1,
+            padding: 50,
+            justifyContent: 'center',
           }}>
-          <Header navigation={navigation} />
           <Swiper
             onIndexChanged={i => this.onSwipe(i)}
             activeDot={<View />}
@@ -57,33 +60,18 @@ export default class StartPage extends React.Component {
             <StartPageStarted navigation={navigation} index={index} />
             <StartPageFast navigation={navigation} index={index} />
           </Swiper>
-          <View
-            style={{
-              width: '100%',
-              position: 'absolute',
-              bottom: 50,
-              justifyContent: 'center',
-            }}>
-            <Button
-              action={this.onRegisterPress.bind(this)}
-              shadow
-              text={START_PAGE_CREATE_ACCOUNT_BUTTON_TEXT}
-              btnStyle={{
-                backgroundColor: PRIMARY,
-                marginTop: 0,
-              }}
-            />
-            <Button
-              action={this.onLoginPress.bind(this)}
-              text={START_PAGE_LOGIN_TO_ACCOUNT_BUTTON_TEXT}
-              btnStyle={{
-                backgroundColor: WHITE_GREY,
-              }}
-              textStyle={{
-                color: PRIMARY,
-              }}
-            />
-          </View>
+
+          <ButtonWithBorder
+            action={this.onLoginPress.bind(this)}
+            text={START_PAGE_LOGIN_TO_ACCOUNT_BUTTON_TEXT}
+            btnStyle={{
+              marginTop: 0,
+            }}
+          />
+          <ButtonWithOutBorder
+            action={this.onRegisterPress.bind(this)}
+            text={START_PAGE_CREATE_ACCOUNT_BUTTON_TEXT}
+          />
         </View>
       </>
     );

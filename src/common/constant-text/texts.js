@@ -23,13 +23,13 @@ const START_PAGE_FAST_TUTORIAL_CONTENT_THIRD_LINE =
   'and create the text document.';
 
 /* LOGIN PAGE */
-const LOGIN_PAGE_HEADER = 'Login';
-const LOGIN_PAGE_SUB_HEADER = 'Make sure that data is valid';
+const LOGIN_PAGE_HEADER = 'Login to your account';
+const LOGIN_PAGE_SUB_HEADER = 'Make sure that the data is valid';
 const LOGIN_PAGE_FORGOT_PASSWORD = 'Forgot password?';
 
 /* REGISTER PAGE */
 const REGISTER_PAGE_HEADER = 'Register your profile';
-const REGISTER_PAGE_SUB_HEADER = "It's the last step";
+const REGISTER_PAGE_SUB_HEADER = "It's the last step to the great journey";
 
 /* MAIN */
 const MAIN_PAGE_IMPORT_MODULE = 'Import';
@@ -73,8 +73,8 @@ const PASSWORD_INPUT_PLACEHOLDER = 'password';
 const RE_TYPE_PASSWORD_INPUT_PLACEHOLDER = 're-type password';
 const LOGO_HEADER = 'Photo2Letters';
 const LOGO_SUB_HEADER = 'makes life simple';
-const START_PAGE_CREATE_ACCOUNT_BUTTON_TEXT = 'Create account';
-const START_PAGE_LOGIN_TO_ACCOUNT_BUTTON_TEXT = 'Login to Account';
+const START_PAGE_CREATE_ACCOUNT_BUTTON_TEXT = 'Create an account';
+const START_PAGE_LOGIN_TO_ACCOUNT_BUTTON_TEXT = 'Login';
 
 /* VALIDATION */
 const EMAIL_VALIDATION_ERROR_MESSAGE = 'The email is incorrect.';

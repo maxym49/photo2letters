@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import Header from '../../components/start-page/header/header';
-import LoginHeader from '../../components/login-register-page/header/header';
+import {Text, View} from 'react-native';
 import BackgroundContainer from '../../components/global-components/background-container/backgroundContainer';
-import ContentWrapper from '../../components/global-components/content-wrapper/contentWrapper';
 import Input from '../../components/global-components/input/input';
 import {
   EMAIL_INPUT_PLACEHOLDER,
@@ -14,11 +12,20 @@ import {
   EMAIL_VALIDATION_ERROR_MESSAGE,
   PASSWORD_VALIDATION_ERROR_MESSAGE,
 } from '../../common/constant-text/texts';
-import Button from '../../components/global-components/buttons/button';
-import {PRIMARY, WHITE_GREY} from '../../common/styles-variables/colors';
-import {DEV_LOGIN_URL} from '../../common/env/env';
+import {LOGIN_URL} from '../../common/env/env';
 import {getToken, setToken} from '../../common/auth/token';
 import {navigateTo} from '../../common/router/commonFunctions';
+import {ButtonWithBorder} from '../../components/global-components/buttons/buttonWithBorder/button';
+import {ButtonWithOutBorder} from '../../components/global-components/buttons/buttonWithOutBorder/button';
+import Header from '../../components/start-page/header/header';
+import {
+  headerFontFamily,
+  headerFontSize,
+  headerFontColor,
+  textFontFamily,
+  textFontSize,
+  textFontColor,
+} from '../../common/styles-variables/typography/typography';
 
 export default class LoginPage extends Component {
   constructor(props) {
@@ -26,6 +33,8 @@ export default class LoginPage extends Component {
     this.state = {
       email: '',
       password: '',
+      isEmailValid: false,
+      isPassValid: false,
     };
 
     if (getToken()) {
@@ -40,7 +49,7 @@ export default class LoginPage extends Component {
 
   onLoginPress() {
     const {email, password} = this.state;
-    fetch(DEV_LOGIN_URL, {
+    fetch(LOGIN_URL, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -88,20 +97,65 @@ export default class LoginPage extends Component {
     this.props.navigation.dispatch(ra);
   };
 
+  isEmailValid = isEmailValid => {
+    this.setState({
+      isEmailValid,
+    });
+  };
+
+  isPassValid = isPassValid => {
+    this.setState({
+      isPassValid,
+    });
+  };
+
+  isFormValid = () => {
+    //todo
+    const {isEmailValid, isPassValid} = this.state;
+    // if (isEmailValid && isPassValid)
+    return true;
+    // else return false;
+  };
+
   render() {
-    const {navigation} = this.props;
     const {email, password} = this.state;
     return (
       <>
         <BackgroundContainer>
-          <Header navigation={navigation} />
-          <ContentWrapper>
-            <LoginHeader
-              headerText={LOGIN_PAGE_HEADER}
-              subHeaderText={LOGIN_PAGE_SUB_HEADER}
-            />
+          <Header disabled />
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'flex-start',
+              padding: 50,
+              position: 'relative',
+            }}>
+            <View
+              style={{
+                alignItems: 'flex-start',
+                width: '100%',
+                marginBottom: 50,
+              }}>
+              <Text
+                style={{
+                  fontFamily: headerFontFamily,
+                  fontSize: headerFontSize,
+                  color: headerFontColor,
+                }}>
+                {LOGIN_PAGE_HEADER}
+              </Text>
+              <Text
+                style={{
+                  fontFamily: textFontFamily,
+                  fontSize: textFontSize,
+                  color: textFontColor,
+                }}>
+                {LOGIN_PAGE_SUB_HEADER}
+              </Text>
+            </View>
             <Input
               text={email}
+              isValid={this.isEmailValid}
               errorMessage={EMAIL_VALIDATION_ERROR_MESSAGE}
               type="email"
               action={this.onEmailChange}
@@ -109,33 +163,31 @@ export default class LoginPage extends Component {
             />
             <Input
               security
+              isValid={this.isPassValid}
               text={password}
               errorMessage={PASSWORD_VALIDATION_ERROR_MESSAGE}
               type="password"
               action={this.onPassChange}
               placeholder={PASSWORD_INPUT_PLACEHOLDER}
             />
-            <Button
-              disabled={!email.length && !password.length}
-              action={this.onLoginPress.bind(this)}
-              shadow
-              text={START_PAGE_LOGIN_TO_ACCOUNT_BUTTON_TEXT}
-              btnStyle={{
-                backgroundColor: PRIMARY,
-                marginTop: 30,
-              }}
-            />
-            <Button
-              action={this.onForgotPasswordPress.bind(this)}
-              text={LOGIN_PAGE_FORGOT_PASSWORD}
-              btnStyle={{
-                backgroundColor: WHITE_GREY,
-              }}
-              textStyle={{
-                color: PRIMARY,
-              }}
-            />
-          </ContentWrapper>
+            <View
+              style={{
+                width: '100%',
+                position: 'absolute',
+                bottom: 50,
+                left: 50,
+              }}>
+              <ButtonWithBorder
+                disabled={!this.isFormValid}
+                action={this.onLoginPress.bind(this)}
+                text={START_PAGE_LOGIN_TO_ACCOUNT_BUTTON_TEXT}
+              />
+              <ButtonWithOutBorder
+                action={this.onForgotPasswordPress.bind(this)}
+                text={LOGIN_PAGE_FORGOT_PASSWORD}
+              />
+            </View>
+          </View>
         </BackgroundContainer>
       </>
     );

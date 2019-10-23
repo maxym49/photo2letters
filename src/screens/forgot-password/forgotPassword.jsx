@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {View, Text, Image} from 'react-native';
 import {forgotPassword} from '../../common/path-extracter/pathExtracter';
 import BackgroundContainer from '../../components/global-components/background-container/backgroundContainer';
-import ContentWrapper from '../../components/global-components/content-wrapper/contentWrapper';
 import Input from '../../components/global-components/input/input';
 import styles from './forgotPassword.style';
 import {
@@ -104,7 +103,13 @@ export default class ForgotPassword extends Component {
     return (
       <>
         <BackgroundContainer>
-          <ContentWrapper>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'flex-start',
+              padding: 50,
+              position: 'relative',
+            }}>
             <View style={styles.container}>
               <Image
                 source={forgotPassword}
@@ -113,7 +118,7 @@ export default class ForgotPassword extends Component {
               />
               {this.getStage()}
             </View>
-          </ContentWrapper>
+          </View>
         </BackgroundContainer>
       </>
     );
