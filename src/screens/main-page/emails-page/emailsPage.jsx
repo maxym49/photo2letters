@@ -169,7 +169,7 @@ export default class EmailsPage extends Component {
     return (
       <>
         <BackgroundContainer resizeMode="contain">
-          <Header disabled={true} />
+          <Header from="MainEmails" navigation={this.props.navigation} />
           <ScrollView
             nestedScrollEnabled={true}
             style={{

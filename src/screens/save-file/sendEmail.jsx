@@ -44,8 +44,6 @@ export default class SendEmail extends Component {
   saveFile = () => {
     const {fileName, image} = this.props.navigation.state.params;
     const {email} = this.state;
-    console.log(image);
-    console.log(fileName);
     fetch(FILES_URL, {
       method: 'POST',
       headers: {

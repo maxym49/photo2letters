@@ -173,7 +173,7 @@ export default class FilesPage extends Component {
     const {cardModules, fileList} = this.state;
     return (
       <BackgroundContainer resizeMode="contain">
-        <Header disabled={true} />
+        <Header from="MainFiles" navigation={this.props.navigation} />
         <ScrollView
           nestedScrollEnabled={true}
           style={{

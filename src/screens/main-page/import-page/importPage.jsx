@@ -62,7 +62,7 @@ export default class ImportPage extends Component {
     return (
       <>
         <BackgroundContainer resizeMode="contain">
-          <Header />
+          <Header from="MainImport" navigation={this.props.navigation} />
           <View
             style={{
               flex: 1,

@@ -113,7 +113,7 @@ export default class RegisterPage extends Component {
     return (
       <>
         <BackgroundContainer>
-          <Header disabled />
+          <Header from="Register" disabled navigation={this.props.navigation} />
           <View
             style={{
               flex: 1,

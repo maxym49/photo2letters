@@ -122,7 +122,7 @@ export default class LoginPage extends Component {
     return (
       <>
         <BackgroundContainer>
-          <Header disabled />
+          <Header from="Login" disabled navigation={this.props.navigation} />
           <View
             style={{
               flex: 1,
