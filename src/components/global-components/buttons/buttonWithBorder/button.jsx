@@ -53,7 +53,13 @@ export class ButtonWithBorder extends Component {
       toValue: 0,
       duration: 250,
       easing: Easing.ease,
-    }).start(() => this.props.action());
+    }).start(() => {
+      this.props.action();
+      this.state.borderRight.setValue(100);
+      this.state.borderTop.setValue(100);
+      this.state.borderLeft.setValue(100);
+      this.state.borderBottom.setValue(100);
+    });
   };
 
   animateButton = () => {

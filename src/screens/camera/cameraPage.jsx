@@ -10,6 +10,10 @@ import {
   focusOn,
   focusOff,
 } from '../../common/path-extracter/pathExtracter';
+import {
+  buttonFontFamily,
+  buttonFontSize,
+} from '../../common/styles-variables/typography/typography';
 
 export default class CameraPage extends Component {
   constructor(props) {
@@ -69,32 +73,40 @@ export default class CameraPage extends Component {
             width: Dimensions.get('window').width,
           }}
         />
-        <Text
+        <View
           style={{
-            position: 'absolute',
-            left: 20,
-            bottom: 20,
-            backgroundColor: 'transparent',
-            color: WHITE,
-            fontFamily: 'Roboto-Medium',
-            fontSize: 17,
-          }}
-          onPress={() => this.setState({imageUri: null})}>
-          Cancel
-        </Text>
-        <Text
-          style={{
-            position: 'absolute',
-            right: 20,
-            bottom: 20,
-            backgroundColor: 'transparent',
-            color: WHITE,
-            fontSize: 17,
-            fontFamily: 'Roboto-Medium',
-          }}
-          onPress={() => this.savePicture()}>
-          Accept
-        </Text>
+            backgroundColor: BLACK,
+            width: '100%',
+            height: 80,
+            position: 'relative',
+          }}>
+          <Text
+            style={{
+              position: 'absolute',
+              left: 30,
+              bottom: 30,
+              backgroundColor: 'transparent',
+              color: WHITE,
+              fontFamily: buttonFontFamily,
+              fontSize: 16,
+            }}
+            onPress={() => this.setState({imageUri: null})}>
+            Cancel
+          </Text>
+          <Text
+            style={{
+              position: 'absolute',
+              right: 30,
+              bottom: 30,
+              backgroundColor: 'transparent',
+              color: WHITE,
+              fontFamily: buttonFontFamily,
+              fontSize: 16,
+            }}
+            onPress={() => this.savePicture()}>
+            Accept
+          </Text>
+        </View>
       </View>
     );
   }

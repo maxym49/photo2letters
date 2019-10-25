@@ -5,7 +5,7 @@ const headerFontFamily = 'DMSerifText-Regular';
 const textFontFamily = 'Roboto-Regular';
 
 const buttonFontSize = 12;
-const headerFontSize = 20;
+const headerFontSize = 24;
 const textFontSize = 14;
 
 const buttonLetterSpacing = 2;

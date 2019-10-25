@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, Alert} from 'react-native';
 import BackgroundContainer from '../../components/global-components/background-container/backgroundContainer';
 import Input from '../../components/global-components/input/input';
 import {
@@ -63,10 +63,22 @@ export default class LoginPage extends Component {
       .then(response => {
         if (response.ok) return response.json();
         else {
-          this.setState({
-            email: '',
-            password: '',
-          });
+          this.setState(
+            {
+              email: '',
+              password: '',
+            },
+            () => {
+              Alert.alert(
+                'Ups...',
+                'Invalid email or password.',
+                [{text: 'OK'}],
+                {
+                  cancelable: false,
+                },
+              );
+            },
+          );
         }
       })
       .then(responseJson => {
@@ -155,7 +167,7 @@ export default class LoginPage extends Component {
             </View>
             <Input
               text={email}
-              isValid={this.isEmailValid}
+              isValueValid={this.isEmailValid}
               errorMessage={EMAIL_VALIDATION_ERROR_MESSAGE}
               type="email"
               action={this.onEmailChange}
@@ -163,7 +175,7 @@ export default class LoginPage extends Component {
             />
             <Input
               security
-              isValid={this.isPassValid}
+              isValueValid={this.isPassValid}
               text={password}
               errorMessage={PASSWORD_VALIDATION_ERROR_MESSAGE}
               type="password"
@@ -178,7 +190,7 @@ export default class LoginPage extends Component {
                 left: 50,
               }}>
               <ButtonWithBorder
-                disabled={!this.isFormValid}
+                disabled={!this.isFormValid()}
                 action={this.onLoginPress.bind(this)}
                 text={START_PAGE_LOGIN_TO_ACCOUNT_BUTTON_TEXT}
               />

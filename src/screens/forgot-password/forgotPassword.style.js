@@ -5,6 +5,14 @@ import {
   GREY,
   BLACK,
 } from '../../common/styles-variables/colors';
+import {
+  textFontColor,
+  textFontSize,
+  textFontFamily,
+  headerFontFamily,
+  headerFontSize,
+  headerFontColor,
+} from '../../common/styles-variables/typography/typography';
 
 const {width, height} = Dimensions.get('window');
 
@@ -34,13 +42,16 @@ export default StyleSheet.create({
   },
   text: {
     alignSelf: 'flex-start',
-    fontSize: 18,
-    fontFamily: 'Roboto-Regular',
+    fontSize: headerFontSize,
+    color: headerFontColor,
+    fontFamily: headerFontFamily,
+    lineHeight: 26,
+    marginBottom: 5,
   },
   subText: {
     alignSelf: 'flex-start',
-    fontSize: 14,
-    color: GREY,
-    fontFamily: 'Roboto-Regular',
+    fontSize: textFontSize,
+    color: textFontColor,
+    fontFamily: textFontFamily,
   },
 });

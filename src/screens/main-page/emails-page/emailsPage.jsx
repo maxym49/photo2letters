@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
-import {View, TouchableWithoutFeedback, ScrollView, Text} from 'react-native';
+import {View, ScrollView, Text, Alert} from 'react-native';
 import Header from '../../../components/start-page/header/header';
-import CardModule from '../../../components/main/card-module/cardModule';
 import BackgroundContainer from '../../../components/global-components/background-container/backgroundContainer';
-import cardModules from '../../../common/static-data/main/cardModules';
-import {onModuleCardPress} from '../../../common/router/commonFunctions';
+import {navigateTo} from '../../../common/router/commonFunctions';
 import Input from '../../../components/global-components/input/input';
 import {
   MAIN_EMAILS_PAGE_SELECT_PLACEHOLDER,
@@ -13,7 +11,6 @@ import {
   MAIN_EMAILS_PAGE_BUTTON_SEND,
   MAIN_EMAILS_PAGE_SELECT_NO_FILES,
 } from '../../../common/constant-text/texts';
-import {BLACK} from '../../../common/styles-variables/colors';
 import SelectBox from '../../../components/global-components/select-box/selectBox';
 import {getToken} from '../../../common/auth/token';
 import {
@@ -21,7 +18,6 @@ import {
   INFORMATION_SAVED_FILES_URL,
   EMAIL_SENDER_URL,
 } from '../../../common/env/env';
-import {ButtonWithBorder} from '../../../components/global-components/buttons/buttonWithBorder/button';
 import {ButtonWithOutBorder} from '../../../components/global-components/buttons/buttonWithOutBorder/button';
 import {
   headerFontColor,
@@ -34,32 +30,14 @@ export default class EmailsPage extends Component {
     super(props);
     this.state = {
       sendToEmail: '',
-      cardModules,
       fileList: [],
     };
   }
 
   componentDidMount() {
-    const {cardModules} = this.state;
-    const filteredCardModules = cardModules.map(module => {
-      module.isActive = module.name === 'emails';
-      return module;
-    });
-    this.setState({
-      cardModules: filteredCardModules,
-    });
     this.initFilesData();
     this.initEmailData();
   }
-
-  onCardPress = name => {
-    const ra = onModuleCardPress(
-      name,
-      this.state,
-      this.props.navigation.navigate,
-    );
-    this.props.navigation.dispatch(ra);
-  };
 
   onSelect = selectedItem => {
     const {fileList} = this.state;
@@ -157,9 +135,15 @@ export default class EmailsPage extends Component {
           selectedFiles,
         },
       }),
-    }).catch(error => {
-      console.error(error);
-    });
+    })
+      .then(() =>
+        Alert.alert('Awesome', 'Your package has been sent.', [{text: 'OK'}], {
+          cancelable: false,
+        }),
+      )
+      .catch(error => {
+        console.error(error);
+      });
   };
 
   onEmailChange = t => {

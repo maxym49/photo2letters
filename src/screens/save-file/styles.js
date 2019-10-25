@@ -2,15 +2,21 @@ import {StyleSheet} from 'react-native';
 import {
   BLACKSHADOW,
   WHITE,
-  WHITE_GREY,
   GREY,
   PRIMARY,
 } from '../../common/styles-variables/colors';
+import {
+  buttonFontFamily,
+  textFontColor,
+  textFontFamily,
+  buttonFontColor,
+} from '../../common/styles-variables/typography/typography';
 
 export default StyleSheet.create({
   wrapper: {
     flex: 1,
-    backgroundColor: WHITE_GREY,
+    padding: 50,
+    backgroundColor: WHITE,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -31,28 +37,20 @@ export default StyleSheet.create({
     borderRadius: 4,
     justifyContent: 'center',
     margin: 5,
-    shadowColor: BLACKSHADOW,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.15,
-    shadowRadius: 3.84,
-    elevation: 1,
   },
   lightText: {
     fontSize: 17,
-    color: GREY,
-    fontFamily: 'Roboto-Regular',
+    color: textFontColor,
+    fontFamily: textFontFamily,
   },
   boldText: {
     fontSize: 17,
-    color: GREY,
-    fontFamily: 'Roboto-Medium',
+    color: buttonFontColor,
+    fontFamily: buttonFontFamily,
   },
   bolTextPrimary: {
     fontSize: 17,
     color: PRIMARY,
-    fontFamily: 'Roboto-Medium',
+    fontFamily: buttonFontFamily,
   },
 });

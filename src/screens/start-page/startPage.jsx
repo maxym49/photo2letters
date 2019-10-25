@@ -5,7 +5,7 @@ import StartPageStarted from './sub-screens/startPageStarted';
 import Swiper from 'react-native-swiper';
 import {View} from 'react-native';
 import Header from '../../components/start-page/header/header';
-import {WHITE_GREY, PRIMARY, WHITE} from '../../common/styles-variables/colors';
+import {WHITE} from '../../common/styles-variables/colors';
 import {navigateTo} from '../../common/router/commonFunctions';
 import {ButtonWithBorder} from '../../components/global-components/buttons/buttonWithBorder/button';
 import {ButtonWithOutBorder} from '../../components/global-components/buttons/buttonWithOutBorder/button';

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Alert} from 'react-native';
 import Header from '../../components/start-page/header/header';
 import BackgroundContainer from '../../components/global-components/background-container/backgroundContainer';
 import Input from '../../components/global-components/input/input';
@@ -59,6 +59,16 @@ export default class RegisterPage extends Component {
     })
       .then(response => {
         if (response.ok) return response.json();
+        else {
+          Alert.alert(
+            'Please, try again',
+            'This account already exists.',
+            [{text: 'OK'}],
+            {
+              cancelable: false,
+            },
+          );
+        }
       })
       .then(responseJson => {
         if (responseJson) {
@@ -146,7 +156,7 @@ export default class RegisterPage extends Component {
             </View>
             <Input
               errorMessage={EMAIL_VALIDATION_ERROR_MESSAGE}
-              isValid={this.isEmailValid}
+              isValueValid={this.isEmailValid}
               type="email"
               text={email}
               action={this.onEmailChange}

@@ -11,6 +11,7 @@ import CameraRoll from '@react-native-community/cameraroll';
 import styles from './gallery.style';
 import {navigateTo} from '../../common/router/commonFunctions';
 import GalleryImage from '../../components/gallery/gallery-image/galleryImage';
+import {ButtonWithOutBorder} from '../../components/global-components/buttons/buttonWithOutBorder/button';
 
 export default class Gallery extends Component {
   constructor(props) {
@@ -53,8 +54,9 @@ export default class Gallery extends Component {
 
   navigateToForm = () => {
     const {selectedImage} = this.state;
+    if (!selectedImage) return;
     ImageStore.getBase64ForTag(
-      selectedImage.uri,
+      selectedImage.uri.toString(),
       data => {
         const image = {
           base64: data,
@@ -89,11 +91,11 @@ export default class Gallery extends Component {
         ) : null}
         {this.state.permission ? (
           <View style={styles.button}>
-            <TouchableOpacity onPress={this.navigateToForm}>
-              <View>
-                <Text style={styles.buttonText}>Save as document</Text>
-              </View>
-            </TouchableOpacity>
+            <ButtonWithOutBorder
+              disabled={!this.state.selectedImage}
+              action={this.navigateToForm}
+              text="Save as document"
+            />
           </View>
         ) : null}
       </View>

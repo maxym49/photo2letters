@@ -36,7 +36,10 @@ export class ButtonWithOutBorder extends Component {
       easing: Easing.ease,
     }).start(() => {
       const {action} = this.props;
-      setTimeout(() => action(), 100);
+      setTimeout(() => {
+        action();
+        this.state.overlay.setValue(0);
+      }, 100);
     });
   };
 

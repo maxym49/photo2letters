@@ -66,7 +66,33 @@ const FORGOT_PASSWORD_CODE_RESET = 'Please enter the new password';
 
 /* SAVE FILE */
 
-const SAVE_FILE_PAGE_FILE_NAME = 'Provide file name';
+const SAVE_FILE_PAGE_FILE_NAME = 'Provide the file name';
+
+/* VALIDATION */
+const EMAIL_VALIDATION_ERROR_MESSAGE = 'The email is incorrect.';
+const FILE_NAME_VALIDATION_ERROR_MESSAGE =
+  'The file name should contain 4 letters.';
+const PASSWORD_VALIDATION_ERROR_MESSAGE =
+  'The password should contain one special character and large letter.';
+
+/* LOGOUT */
+const LOGOUT_BYE_MESSAGE = 'See you soon';
+const LOGOUT_THANKS_MESSAGE = 'Thank you for using';
+const LOGOUT_APP_NAME = 'photo2letters';
+
+/* CREDENTIALS */
+const CREDENTIALS_ABOUT_TITLE = 'About me';
+const CREDENTIALS_ABOUT_TEXT = `Hello human, 
+First of all, thank you for using my app. 
+I hope you will enjoy it. 
+
+My name is Max and I am just a regular normal everyday … software developer. 
+If you want to contact with me please send the 
+message to: konarski.maks@gmail.com`;
+const CREDENTIALS_DONATION_TITLE = 'Donation';
+const CREDENTIALS_DONATION_TEXT =
+  'I will be very pleased if you would donate me :)';
+const CREDENTIALS_DONATION_BUTTON = 'Donate';
 
 /* GLOBAL */
 const EMAIL_INPUT_PLACEHOLDER = 'email';
@@ -76,13 +102,6 @@ const LOGO_HEADER = 'Photo2Letters';
 const LOGO_SUB_HEADER = 'makes life simple';
 const START_PAGE_CREATE_ACCOUNT_BUTTON_TEXT = 'Create an account';
 const START_PAGE_LOGIN_TO_ACCOUNT_BUTTON_TEXT = 'Login';
-
-/* VALIDATION */
-const EMAIL_VALIDATION_ERROR_MESSAGE = 'The email is incorrect.';
-const FILE_NAME_VALIDATION_ERROR_MESSAGE =
-  'The file name should contain 4 letters.';
-const PASSWORD_VALIDATION_ERROR_MESSAGE =
-  'The password should contain one special character and large letter.';
 
 export {
   LOGO_HEADER,
@@ -133,4 +152,12 @@ export {
   FORGOT_PASSWORD_CODE_VERIFICATION,
   FORGOT_PASSWORD_CODE_RESET,
   MAIN_FILES_PAGE_IMPORT_BUTTON,
+  LOGOUT_BYE_MESSAGE,
+  LOGOUT_THANKS_MESSAGE,
+  LOGOUT_APP_NAME,
+  CREDENTIALS_ABOUT_TITLE,
+  CREDENTIALS_ABOUT_TEXT,
+  CREDENTIALS_DONATION_TITLE,
+  CREDENTIALS_DONATION_TEXT,
+  CREDENTIALS_DONATION_BUTTON,
 };

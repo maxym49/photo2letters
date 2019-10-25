@@ -15,7 +15,12 @@ const focusOn = require('../../images/focusOn.png');
 const focusOff = require('../../images/focusOff.png');
 const loadingSquare = require('../../images/sqaure.png');
 const logo = require('../../images/logo.png');
+const camera = require('../../images/camera.png');
+const gallery = require('../../images/gallery.png');
 const noData = require('../../images/no_data.png');
+const bye = require('../../images/bye.png');
+const creditCard = require('../../images/creditCard.png');
+const aboutMe = require('../../images/aboutMe.png');
 const hamburger = require('../icons/hamburger.png');
 const exit = require('../icons/exit.png');
 
@@ -40,4 +45,9 @@ export {
   hamburger,
   exit,
   noData,
+  camera,
+  gallery,
+  bye,
+  aboutMe,
+  creditCard,
 };

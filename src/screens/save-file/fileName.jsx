@@ -5,7 +5,7 @@ import {
   SAVE_FILE_PAGE_FILE_NAME,
   FILE_NAME_VALIDATION_ERROR_MESSAGE,
 } from '../../common/constant-text/texts';
-import {WHITE_GREY} from '../../common/styles-variables/colors';
+import {WHITE_GREY, WHITE} from '../../common/styles-variables/colors';
 import {navigateTo} from '../../common/router/commonFunctions';
 
 export default class FileName extends Component {
@@ -43,7 +43,8 @@ export default class FileName extends Component {
         <View
           style={{
             flex: 1,
-            backgroundColor: WHITE_GREY,
+            padding: 50,
+            backgroundColor: WHITE,
             justifyContent: 'center',
             alignItems: 'center',
           }}>
