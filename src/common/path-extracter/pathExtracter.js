@@ -15,6 +15,7 @@ const focusOn = require('../../images/focusOn.png');
 const focusOff = require('../../images/focusOff.png');
 const loadingSquare = require('../../images/sqaure.png');
 const logo = require('../../images/logo.png');
+const noData = require('../../images/no_data.png');
 const hamburger = require('../icons/hamburger.png');
 const exit = require('../icons/exit.png');
 
@@ -38,4 +39,5 @@ export {
   logo,
   hamburger,
   exit,
+  noData,
 };

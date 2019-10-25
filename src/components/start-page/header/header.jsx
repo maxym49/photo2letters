@@ -9,6 +9,7 @@ import {
 import styleSheet from './header.style';
 import {logo, hamburger} from '../../../common/path-extracter/pathExtracter';
 import {navigateTo} from '../../../common/router/commonFunctions';
+import LoadingBar from '../../loading-bar/loadingBar';
 
 class Header extends Component {
   constructor(props) {
@@ -36,7 +37,7 @@ class Header extends Component {
   redirectWithAnimation = () => this.animateHamburger(this.redirectToMenu);
 
   render() {
-    const {disabled} = this.props;
+    const {disabled, showLoader} = this.props;
     const {spinValue} = this.state;
     return (
       <>
@@ -67,6 +68,7 @@ class Header extends Component {
             </View>
           )}
         </View>
+        {showLoader ? <LoadingBar /> : null}
       </>
     );
   }

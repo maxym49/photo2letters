@@ -17,6 +17,7 @@ export default class Menu extends Component {
     super(props);
     this.state = {
       spinValue: new Animated.Value(1),
+      scaleValue: new Animated.Value(1),
     };
   }
 
@@ -27,19 +28,27 @@ export default class Menu extends Component {
   };
 
   animateCross = callback => {
-    Animated.timing(this.state.spinValue, {
+    const {spinValue, scaleValue} = this.state;
+    Animated.timing(spinValue, {
       toValue: 0,
-      duration: 150,
+      duration: 200,
       easing: Easing.ease,
       useNativeDriver: true,
-    }).start(() => callback());
+    }).start(() => {
+      Animated.timing(scaleValue, {
+        toValue: 0,
+        duration: 150,
+        easing: Easing.ease,
+        useNativeDriver: true,
+      }).start(() => callback());
+    });
   };
 
   closeWithAnimate = () => this.animateCross(this.closeMenu);
 
   render() {
     const {navigation} = this.props;
-    const {spinValue} = this.state;
+    const {spinValue, scaleValue} = this.state;
     const {from} = navigation.state.params;
     return (
       <>
@@ -64,7 +73,17 @@ export default class Menu extends Component {
                       outputRange: ['180deg', '0deg'],
                     }),
                   },
+                  {
+                    scale: scaleValue.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [0, 1],
+                    }),
+                  },
                 ],
+                opacity: scaleValue.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [0, 1],
+                }),
               }}
               source={exit}
               resizeMode="contain"

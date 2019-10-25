@@ -26,7 +26,7 @@ export default class SendEmail extends Component {
   };
 
   navigateToFiles = () => {
-    const ra = navigateTo('MainFiles');
+    const ra = navigateTo('MainFiles', {createdFile: true});
     this.props.navigation.dispatch(ra);
   };
 

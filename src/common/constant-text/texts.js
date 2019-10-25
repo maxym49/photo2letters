@@ -43,14 +43,15 @@ const MAIN_IMPORT_PAGE_UPLOAD_PHOTO_BUTTON = 'Upload from gallery';
 
 /* MAIN - FILES */
 const MAIN_FILES_PAGE_REMOVE_BUTTON = 'Remove selected';
-const MAIN_FILES_PAGE_SAVED_FILES = 'Saved files';
+const MAIN_FILES_PAGE_IMPORT_BUTTON = "Let's create some";
+const MAIN_FILES_PAGE_SAVED_FILES = 'List of saved files';
 
 /* MAIN - EMAILS */
-const MAIN_EMAILS_PAGE_SEND_ON_LABEL = 'Send document on email';
+const MAIN_EMAILS_PAGE_SEND_ON_LABEL = 'Email section';
 const MAIN_EMAILS_PAGE_SELECT_LABEL = 'Select documents to send';
 const MAIN_EMAILS_PAGE_SEND_ON_PLACEHOLDER = 'your email';
 const MAIN_EMAILS_PAGE_SELECT_PLACEHOLDER = 'Select document';
-const MAIN_EMAILS_PAGE_SELECT_NO_FILES = 'You have 0 saved files';
+const MAIN_EMAILS_PAGE_SELECT_NO_FILES = "You don't have saved files";
 const MAIN_EMAILS_PAGE_BUTTON_SEND = 'Send files';
 
 /* FORGOT PASSWORD */
@@ -131,4 +132,5 @@ export {
   FORGOT_PASSWORD_PAGE_AUTH_TEXT,
   FORGOT_PASSWORD_CODE_VERIFICATION,
   FORGOT_PASSWORD_CODE_RESET,
+  MAIN_FILES_PAGE_IMPORT_BUTTON,
 };

@@ -2,7 +2,17 @@ import React, {Component} from 'react';
 import {View, Text, TouchableWithoutFeedback, ScrollView} from 'react-native';
 import selectBoxStyle from './selectBox.style';
 import Checkbox from '../checkbox/checkbox';
-import {GREY, LIGHTLINE} from '../../../common/styles-variables/colors';
+import {
+  GREY,
+  LIGHTLINE,
+  PRIMARY,
+} from '../../../common/styles-variables/colors';
+import {
+  buttonFontColor,
+  buttonFontFamily,
+  buttonLetterSpacing,
+  buttonFontSize,
+} from '../../../common/styles-variables/typography/typography';
 
 export default class SelectBox extends Component {
   constructor(props) {
@@ -45,8 +55,18 @@ export default class SelectBox extends Component {
           }}
           style={selectBoxStyle.selectBox}>
           <TouchableWithoutFeedback onPress={this.onSwitch}>
-            <View style={selectBoxStyle.selectBoxInput}>
-              <Text style={{color: GREY}}>
+            <View
+              style={[
+                selectBoxStyle.selectBoxInput,
+                isOpened ? {borderBottomColor: PRIMARY} : null,
+              ]}>
+              <Text
+                style={{
+                  color: buttonFontColor,
+                  fontFamily: buttonFontFamily,
+                  fontSize: buttonFontSize,
+                  letterSpacing: buttonLetterSpacing,
+                }}>
                 {checkedItems.length
                   ? `Selected items: ${checkedItems.length}`
                   : text}
@@ -59,7 +79,7 @@ export default class SelectBox extends Component {
                 ? itemList.map((item, index) => (
                     <View key={item.value} style={{flexDirection: 'column'}}>
                       <TouchableWithoutFeedback onPress={() => action(item)}>
-                        <View>
+                        <View style={{width: '100%'}}>
                           <View
                             style={{
                               width: '100%',
@@ -74,12 +94,21 @@ export default class SelectBox extends Component {
                                 ? {borderRadius: 8}
                                 : null,
                             ]}>
-                            <Text style={{color: GREY}}>{item.label}</Text>
                             <Checkbox
                               checked={item.checked}
                               action={() => action(item)}
-                              styles={{alignContent: 'flex-end'}}
+                              styles={{
+                                alignContent: 'flex-start',
+                                marginRight: 10,
+                              }}
                             />
+                            <Text
+                              style={{
+                                color: buttonFontColor,
+                                fontFamily: buttonFontFamily,
+                              }}>
+                              {item.label}
+                            </Text>
                           </View>
                         </View>
                       </TouchableWithoutFeedback>

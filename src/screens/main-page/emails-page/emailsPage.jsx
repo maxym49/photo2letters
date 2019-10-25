@@ -7,7 +7,6 @@ import cardModules from '../../../common/static-data/main/cardModules';
 import {onModuleCardPress} from '../../../common/router/commonFunctions';
 import Input from '../../../components/global-components/input/input';
 import {
-  MAIN_EMAILS_PAGE_SELECT_LABEL,
   MAIN_EMAILS_PAGE_SELECT_PLACEHOLDER,
   MAIN_EMAILS_PAGE_SEND_ON_LABEL,
   MAIN_EMAILS_PAGE_SEND_ON_PLACEHOLDER,
@@ -23,6 +22,12 @@ import {
   EMAIL_SENDER_URL,
 } from '../../../common/env/env';
 import {ButtonWithBorder} from '../../../components/global-components/buttons/buttonWithBorder/button';
+import {ButtonWithOutBorder} from '../../../components/global-components/buttons/buttonWithOutBorder/button';
+import {
+  headerFontColor,
+  headerFontSize,
+  headerFontFamily,
+} from '../../../common/styles-variables/typography/typography';
 
 export default class EmailsPage extends Component {
   constructor(props) {
@@ -163,9 +168,17 @@ export default class EmailsPage extends Component {
     });
   };
 
+  disableSending = () => {
+    const {fileList, sendToEmail} = this.state;
+    const selectedFiles = [];
+    fileList.forEach(file => (file.checked ? selectedFiles.push(file) : null));
+    if (sendToEmail.length && selectedFiles.length) {
+      return false;
+    } else return true;
+  };
+
   render() {
-    const {cardModules, fileList, sendToEmail} = this.state;
-    const selectedFiles = fileList.map(file => (file.checked ? file : null));
+    const {fileList, sendToEmail} = this.state;
     return (
       <>
         <BackgroundContainer resizeMode="contain">
@@ -184,47 +197,42 @@ export default class EmailsPage extends Component {
               }}>
               <View
                 style={{
+                  flex: 1,
                   justifyContent: 'center',
                   alignItems: 'space-between',
                   flexDirection: 'row',
-                }}>
-                {cardModules.map(module => (
-                  <TouchableWithoutFeedback
-                    key={module.name}
-                    disabled={module.isActive}
-                    onPress={() => this.onCardPress(module.name)}>
-                    <View>
-                      <CardModule
-                        isActive={module.isActive}
-                        image={module.image}
-                        text={module.text}
-                      />
-                    </View>
-                  </TouchableWithoutFeedback>
-                ))}
-              </View>
+                }}></View>
               <View
                 style={{
                   marginTop: 40,
-                  width: '80%',
+                  width: '100%',
                 }}>
+                <Text
+                  style={[
+                    {
+                      color: headerFontColor,
+                      fontSize: headerFontSize,
+                      fontFamily: headerFontFamily,
+                      alignSelf: 'flex-start',
+                    },
+                  ]}>
+                  {MAIN_EMAILS_PAGE_SEND_ON_LABEL}
+                </Text>
                 <View
                   style={{
                     marginBottom: 20,
                     width: '100%',
                     alignSelf: 'center',
                   }}>
-                  <Text
-                    style={{
-                      color: BLACK,
-                    }}>
-                    {MAIN_EMAILS_PAGE_SEND_ON_LABEL}
-                  </Text>
                   <Input
                     placeholder={MAIN_EMAILS_PAGE_SEND_ON_PLACEHOLDER}
                     text={sendToEmail}
                     action={this.onEmailChange}
-                    styles={{alignSelf: 'flex-start', width: '100%'}}
+                    styles={{
+                      alignSelf: 'flex-start',
+                      width: '100%',
+                      marginBottom: 5,
+                    }}
                     textContentType="emailAddress"
                     autoCompleteType="email"
                     keyboardType="email-address"
@@ -237,12 +245,6 @@ export default class EmailsPage extends Component {
                     width: '100%',
                     alignSelf: 'center',
                   }}>
-                  <Text
-                    style={{
-                      color: BLACK,
-                    }}>
-                    {MAIN_EMAILS_PAGE_SELECT_LABEL}
-                  </Text>
                   <SelectBox
                     action={this.onSelect.bind(this)}
                     itemList={fileList}
@@ -253,8 +255,8 @@ export default class EmailsPage extends Component {
                     }
                   />
                 </View>
-                <ButtonWithBorder
-                  disabled={!sendToEmail.length && !selectedFiles.length}
+                <ButtonWithOutBorder
+                  disabled={this.disableSending()}
                   action={this.sendPackage}
                   text={MAIN_EMAILS_PAGE_BUTTON_SEND}
                 />
