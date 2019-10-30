@@ -43,8 +43,7 @@ export default class LoginPage extends Component {
   }
 
   navigateToApp = () => {
-    const ra = navigateTo('MainImport');
-    this.props.navigation.dispatch(ra);
+    navigateTo('MainImport', this.props);
   };
 
   onLoginPress() {
@@ -105,8 +104,7 @@ export default class LoginPage extends Component {
   };
 
   onForgotPasswordPress = () => {
-    const ra = navigateTo('ForgotPassword');
-    this.props.navigation.dispatch(ra);
+    navigateTo('ForgotPassword', this.props);
   };
 
   isEmailValid = isEmailValid => {

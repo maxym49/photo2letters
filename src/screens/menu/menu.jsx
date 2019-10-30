@@ -23,8 +23,7 @@ export default class Menu extends Component {
 
   closeMenu = () => {
     const {from} = this.props.navigation.state.params;
-    const ra = navigateTo(from);
-    this.props.navigation.dispatch(ra);
+    navigateTo(from, this.props);
   };
 
   animateCross = callback => {

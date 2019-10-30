@@ -32,8 +32,7 @@ export default class ForgotPassword extends Component {
 
   goToLogin = isValid => {
     if (isValid) {
-      const ra = navigateTo('Login');
-      this.props.navigation.dispatch(ra);
+      navigateTo('Login', this.props);
     }
   };
 

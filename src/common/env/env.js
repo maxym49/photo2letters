@@ -1,5 +1,5 @@
-let API_URL = 'https://photo2letters.herokuapp.com';
-if (__DEV__) API_URL = 'http://10.0.2.2:4040';
+let API_URL = 'http://192.166.219.115:4040';
+if (__DEV__) API_URL = 'http://10.0.2.2:40 40';
 const LOGIN_URL = `${API_URL}/login`;
 const REGISTER_URL = `${API_URL}/register`;
 const LOGOUT_URL = `${API_URL}/logout`;

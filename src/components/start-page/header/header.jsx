@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import styleSheet from './header.style';
 import {logo, hamburger} from '../../../common/path-extracter/pathExtracter';
-import {navigateTo} from '../../../common/router/commonFunctions';
+import {navigateToWithReset} from '../../../common/router/commonFunctions';
 import LoadingBar from '../../loading-bar/loadingBar';
 
 class Header extends Component {
@@ -21,7 +21,7 @@ class Header extends Component {
 
   redirectToMenu = () => {
     const {from} = this.props;
-    const ra = navigateTo('Menu', {from});
+    const ra = navigateToWithReset('Menu', {from});
     this.props.navigation.dispatch(ra);
   };
 

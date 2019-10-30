@@ -62,8 +62,7 @@ export default class Gallery extends Component {
           base64: data,
           uri: selectedImage.uri,
         };
-        const ra = navigateTo('FileName', {image});
-        this.props.navigation.dispatch(ra);
+        navigateTo('FileName', this.props, {image});
       },
       e => console.warn('getBase64ForTag: ', e),
     );

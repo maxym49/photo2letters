@@ -40,8 +40,7 @@ export default class RegisterPage extends Component {
   }
 
   navigateToLogin = () => {
-    const ra = navigateTo('Login');
-    this.props.navigation.dispatch(ra);
+    navigateTo('Login', this.props);
   };
 
   onRegisterPress() {

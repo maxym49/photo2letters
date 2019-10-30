@@ -38,8 +38,7 @@ export default class Logout extends Component {
         if (response.ok) {
           removeToken();
           setTimeout(() => {
-            const ra = navigateTo('Home');
-            this.props.navigation.dispatch(ra);
+            navigateTo('Home', this.props);
           }, 3000);
         }
       })

@@ -26,8 +26,7 @@ export default class SendEmail extends Component {
   };
 
   navigateToFiles = () => {
-    const ra = navigateTo('MainFiles', {createdFile: true});
-    this.props.navigation.dispatch(ra);
+    navigateTo('MainFiles', this.props, {createdFile: true});
   };
 
   onCancel = () => {
@@ -61,8 +60,7 @@ export default class SendEmail extends Component {
     })
       .then(response => {
         if (response.status === 409) {
-          const ra = navigateTo('FileName', {image});
-          this.props.navigation.dispatch(ra);
+          navigateTo('FileName', this.props, {image});
         }
       })
       .catch(error => {

@@ -159,8 +159,7 @@ export default class FilesPage extends Component {
   };
 
   redirectToImport = () => {
-    const ra = navigateTo('MainImport');
-    this.props.navigation.dispatch(ra);
+    navigateTo('MainImport', this.props);
   };
 
   renderLoader = () => {

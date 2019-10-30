@@ -1,4 +1,5 @@
 import React from 'react';
+import {Animated, Easing} from 'react-native';
 import {createStackNavigator, createAppContainer} from 'react-navigation';
 import StartPage from './src/screens/start-page/startPage';
 import LoginPage from './src/screens/login-page/loginPage';
@@ -33,10 +34,38 @@ const MainNavigator = createStackNavigator(
     Credentials: {screen: CredentialsPage},
   },
   {
+    initialRouteName: 'Home',
     headerMode: 'none',
     navigationOptions: {
       headerVisible: false,
     },
+    defaultNavigationOptions: {
+      gesturesEnabled: false,
+    },
+    transitionConfig: () => ({
+      transitionSpec: {
+        duration: 500,
+        easing: Easing.out(Easing.poly(4)),
+        timing: Animated.timing,
+      },
+      screenInterpolator: sceneProps => {
+        const {layout, position, scene} = sceneProps;
+        const {index} = scene;
+
+        const width = layout.initWidth;
+        const translateX = position.interpolate({
+          inputRange: [index - 1, index, index + 1],
+          outputRange: [width, 0, 0],
+        });
+
+        const opacity = position.interpolate({
+          inputRange: [index - 1, index - 0.99, index],
+          outputRange: [0, 1, 1],
+        });
+
+        return {opacity, transform: [{translateX}]};
+      },
+    }),
   },
 );
 

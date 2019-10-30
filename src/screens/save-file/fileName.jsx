@@ -29,8 +29,7 @@ export default class FileName extends Component {
         if (this.state.isValid) {
           const {image} = this.props.navigation.state.params;
           const {fileName} = this.state;
-          const ra = navigateTo('SendEmail', {image, fileName});
-          this.props.navigation.dispatch(ra);
+          navigateTo('SendEmail', this.props, {image, fileName});
         }
       },
     );

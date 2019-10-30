@@ -46,8 +46,7 @@ export default class MenuItem extends Component {
 
   handleNavigate = () => {
     const {redirectTo} = this.props.item;
-    const ra = navigateTo(redirectTo);
-    this.props.navigation.dispatch(ra);
+    navigateTo(redirectTo, this.props);
   };
 
   render() {

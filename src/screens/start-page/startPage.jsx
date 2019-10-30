@@ -29,13 +29,11 @@ export default class StartPage extends React.Component {
   }
 
   onLoginPress() {
-    const ra = navigateTo('Login');
-    this.props.navigation.dispatch(ra);
+    navigateTo('Login', this.props);
   }
 
   onRegisterPress() {
-    const ra = navigateTo('Register');
-    this.props.navigation.dispatch(ra);
+    navigateTo('Register', this.props);
   }
 
   render() {

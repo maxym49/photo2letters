@@ -1,20 +1,11 @@
 import {StackActions, NavigationActions} from 'react-navigation';
 
-const onModuleCardPress = (name, state) => {
-  const {cardModules} = state;
-  let resetAction = null;
-  cardModules.forEach(module => {
-    if (module.name === name) {
-      resetAction = StackActions.reset({
-        index: 0,
-        actions: [NavigationActions.navigate({routeName: module.link})],
-      });
-    }
-  });
-  return resetAction;
+const navigateTo = (linkName, props, options = {}) => {
+  const {navigate} = props.navigation;
+  if (linkName.length) navigate({routeName: linkName, params: options});
 };
 
-const navigateTo = (linkName, options = {}) => {
+const navigateToWithReset = (linkName, options = {}) => {
   if (linkName.length)
     return StackActions.reset({
       index: 0,
@@ -24,4 +15,4 @@ const navigateTo = (linkName, options = {}) => {
     });
 };
 
-export {onModuleCardPress, navigateTo};
+export {navigateTo, navigateToWithReset};
